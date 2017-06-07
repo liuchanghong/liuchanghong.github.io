@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>苹果官方文档翻译 - The Role of View Controllers | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="官方文档 - The Role of View Controllers View controllers are the foundation of your app’s internal structure. Every app has at least one view controller, and most apps have several. Each view controller m">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="苹果官方文档翻译 - The Role of View Controllers">
+<meta property="og:url" content="http://yoursite.com/2017/06/07/苹果官方文档翻译-The-Role-of-View-Controllers/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="官方文档 - The Role of View Controllers View controllers are the foundation of your app’s internal structure. Every app has at least one view controller, and most apps have several. Each view controller m">
+<meta property="og:image" content="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ContainerViewController_fig_1-2_2x.png">
+<meta property="og:image" content="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_CustomSubclasses_fig_1-3_2x.png">
+<meta property="og:updated_time" content="2017-06-07T10:26:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="苹果官方文档翻译 - The Role of View Controllers">
+<meta name="twitter:description" content="官方文档 - The Role of View Controllers View controllers are the foundation of your app’s internal structure. Every app has at least one view controller, and most apps have several. Each view controller m">
+<meta name="twitter:image" content="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-苹果官方文档翻译-The-Role-of-View-Controllers" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/07/苹果官方文档翻译-The-Role-of-View-Controllers/" class="article-date">
+  <time datetime="2017-06-07T10:21:59.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      苹果官方文档翻译 - The Role of View Controllers
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457-CH2-SW1" target="_blank" rel="external">官方文档 - The Role of View Controllers</a></p>
+<p>View controllers are the foundation of your app’s internal structure. Every app has at least one view controller, and most apps have several. Each view controller manages a portion of your app’s user interface as well as the interactions between that interface and the underlying data. View controllers also facilitate transitions between different parts of your user interface.</p>
+<a id="more"></a>
+<p><strong>View controllers 是 app 内部结构的基础。每个 app 都有至少一个 view controller，大部分 app 有多个 view controller。每个 view controller 都管理着 app 交互界面的一部分，也管理着界面和数据的交互。View controller 也给 app 不同交互界面之间的转场带来便利。</strong></p>
+<p>Because they play such an important role in your app, view controllers are at the center of almost everything you do. The UIViewController class defines the methods and properties for managing your views, handling events, transitioning from one view controller to another, and coordinating with other parts of your app. You subclass UIViewController (or one of its subclasses) and add the custom code you need to implement your app’s behavior.</p>
+<p><strong>也由于 view controller 在 app 中有着如此重要的作用，它几乎是你要做的所有操作的中心。UIViewController 类定义了许多方法和属性，用来管理 app 中的 view、触摸事件、转场以及其他各种需要协调的部分。我们的 controller 类继承自 UIViewController （或者 UIViewController 的子类），可以在其中添加我们需要的代码使 app 按我们的思路运行。</strong></p>
+<p>There are two types of view controllers:</p>
+<ul>
+<li><p>Content view controllers manage a discrete piece of your app’s content and are the main type of view controller that you create.</p>
+</li>
+<li><p>Container view controllers collect information from other view controllers (known as child view controllers) and present it in a way that facilitates navigation or presents the content of those view controllers differently.</p>
+</li>
+</ul>
+<p>Most apps are a mixture of both types of view controllers.</p>
+<p><strong>view controller 分为两种：</strong></p>
+<ul>
+<li><p>Content view controlls 管理 app 内容的离散件，它是我们自己创建 view controller 的主要形式。</p>
+</li>
+<li><p>Container view controllers 从其他 view controllers 收集信息 （主要是 子 view controllers）并以方便导航导航或者其他不同的形式呈现它。</p>
+</li>
+</ul>
+<p>大多数 app 是二者的混合体。</p>
+<h3 id="View-Management"><a href="#View-Management" class="headerlink" title="View Management"></a>View Management</h3><p>The most important role of a view controller is to manage a hierarchy of views. Every view controller has a single root view that encloses all of the view controller’s content. To that root view, you add the views you need to display your content. Figure 1-1 illustrates the built-in relationship between the view controller and its views. The view controller always has a reference to its root view and each view has strong references to its subviews.</p>
+<p><strong>view controller 最重要的作用是管理 view 的层级。每个 view controller 都只有一个 root view，这个 root view 包含 view controller 的所有内容。在这个 root view 的基础上，我们可以增加我们展示内容需要的 view。图 1-1 说明了view controller 和它的 view 之间的内在联系。view controller 一直会保持对它的 view 的引用，每个 view 都对它的 子 view保持强引用。</strong></p>
+<p><img src="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png" alt="图 1-1"></p>
+<blockquote>
+<h5 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a>NOTE</h5><p>It is common practice to use outlets to access other views in your view controller’s view hierarchy.<br>Because a view controller manages the content of all its views, outlets let you store references to the views that you need.<br>The outlets themselves are connected to the actual view objects automatically when the views are loaded from the storyboard.</p>
+<p>通常我们在 view controller 的 view 层级中通过接口访问其他 view。<br>由于 view controller 管理着所有它的 view 的内容，接口能够让你保持对所需要 view 的引用。<br>当 view 从 storyboard 加载时，接口本身被实际的 view 对象自动关联。</p>
+</blockquote>
+<p>A content view controller manages all of its views by itself. A container view controller manages its own views plus the root views from one or more of its child view controllers. The container does not manage the content of its children. It manages only the root view, sizing and placing it according to the container’s design. Figure 1-2 illustrates the relationship between a split view controller and its children. The split view controller manages the overall size and position of its child views, but the child view controllers manage the actual contents of those views.</p>
+<p><strong>content view controller 自己管理它自己所有的 view。而 container view controller 管理它自己的 view 加上来自它所有的子 view controller 的 root view 。container 并不管理它的子 container 的内容。它只管理 root view，根据 container 的设计确定它们的大小和位置。图 1-2 说明了一个 split view controller 和它的子 controller 的关系。split view controller 管理它子 view 总体的大小和位置，但是子 view controller 才管理这些 view 的实际内容。</strong></p>
+<p><img src="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ContainerViewController_fig_1-2_2x.png" alt="图 1-2" title="【图 1-2】 View controllers can manage content from other view controllers"></p>
+<h3 id="Data-Marshaling（数据封送处理）"><a href="#Data-Marshaling（数据封送处理）" class="headerlink" title="Data Marshaling（数据封送处理）"></a>Data Marshaling（数据封送处理）</h3><p>A view controller acts as an intermediary between the views it manages and the data of your app. The methods and properties of the UIViewController class let you manage the visual presentation of your app. When you subclass UIViewController, you add any variables you need to manage your data in your subclass. Adding custom variables creates a relationship like the one in Figure 1-3, where the view controller has references to your data and to the views used to present that data. Moving data back and forth between the two is your responsibility.</p>
+<p><strong>view controller 在 view 和 data 之间担当一个中间人的角色。UIViewController 的方法和属性使我们能够管理 app 的视觉显示效果。当我们继承 UIViewController 时，我们可以增加管理 data 所需的各种变量。增加变量创建一种如图 1-3 所示的关系，view controller 引用了 data，也引用了用了呈现这些 data 的 view。view controller 的责任就是在 view 和 data object 之间来回传递数据。</strong></p>
+<p><img src="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_CustomSubclasses_fig_1-3_2x.png" alt="图 1-3" title="【图 1-3】 A view controller mediates between data objects and views"></p>
+<p>You should always maintain a clean separation of responsibilities within your view controllers and data objects. Most of the logic for ensuring the integrity of your data structures belongs in the data objects themselves. The view controller might validate input coming from views and then package that input in the format that your data objects require, but you should minimize the view controller’s role in managing the actual data.</p>
+<p><strong>我们需要维持 view controller 和 data object 完全的职责分离。大多数确保数据结构完整的逻辑属于 data object 本身。view controller 可能会验证来自 view 的输入，然后打包成 data object 所需要的格式，但是你需要将 view controller 对实际 data 的管理降低到最少。</strong></p>
+<p>A UIDocument object is one way to manage your data separately from your view controllers. A document object is a controller object that knows how to read and write data to persistent storage. When you subclass, you add whatever logic and methods you need to extract that data and pass it to a view controller or other parts of your app. The view controller might store a copy of any data it receives to make it easier to update views, but the document still owns the true data.</p>
+<p>UIDocument object 是将 data 从 view controller 分离的一种方法。Document object 是 一个 controller object，它知道如何读写持久数据。在 UIDocument 子类中，我们</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/07/苹果官方文档翻译-The-Role-of-View-Controllers/" data-id="cj3munff10000pjeu7292zuca" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/iOS/" style="font-size: 10px;">iOS</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/06/07/苹果官方文档翻译-The-Role-of-View-Controllers/">苹果官方文档翻译 - The Role of View Controllers</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
