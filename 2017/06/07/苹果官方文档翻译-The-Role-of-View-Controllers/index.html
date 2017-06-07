@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ContainerViewController_fig_1-2_2x.png">
 <meta property="og:image" content="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_CustomSubclasses_fig_1-3_2x.png">
-<meta property="og:updated_time" content="2017-06-07T10:26:31.000Z">
+<meta property="og:updated_time" content="2017-06-07T11:16:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="苹果官方文档翻译 - The Role of View Controllers">
 <meta name="twitter:description" content="官方文档 - The Role of View Controllers View controllers are the foundation of your app’s internal structure. Every app has at least one view controller, and most apps have several. Each view controller m">
@@ -110,7 +110,7 @@
     
     <a href="/index.html" class="item" >
         <i class="home icon"></i>
-        HOME
+        首页
     </a>
 
     
@@ -171,8 +171,9 @@
 <p><strong>view controller &#x6700;&#x91CD;&#x8981;&#x7684;&#x4F5C;&#x7528;&#x662F;&#x7BA1;&#x7406; view &#x7684;&#x5C42;&#x7EA7;&#x3002;&#x6BCF;&#x4E2A; view controller &#x90FD;&#x53EA;&#x6709;&#x4E00;&#x4E2A; root view&#xFF0C;&#x8FD9;&#x4E2A; root view &#x5305;&#x542B; view controller &#x7684;&#x6240;&#x6709;&#x5185;&#x5BB9;&#x3002;&#x5728;&#x8FD9;&#x4E2A; root view &#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x6211;&#x4EEC;&#x5C55;&#x793A;&#x5185;&#x5BB9;&#x9700;&#x8981;&#x7684; view&#x3002;&#x56FE; 1-1 &#x8BF4;&#x660E;&#x4E86;view controller &#x548C;&#x5B83;&#x7684; view &#x4E4B;&#x95F4;&#x7684;&#x5185;&#x5728;&#x8054;&#x7CFB;&#x3002;view controller &#x4E00;&#x76F4;&#x4F1A;&#x4FDD;&#x6301;&#x5BF9;&#x5B83;&#x7684; view &#x7684;&#x5F15;&#x7528;&#xFF0C;&#x6BCF;&#x4E2A; view &#x90FD;&#x5BF9;&#x5B83;&#x7684; &#x5B50; view&#x4FDD;&#x6301;&#x5F3A;&#x5F15;&#x7528;&#x3002;</strong></p>
 <p><a class="magnific-img" href="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png"><img src="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/Art/VCPG_ControllerHierarchy_fig_1-1_2x.png" alt="&#x56FE; 1-1" class="ui centered image"></a></p>
 <blockquote>
-<h5 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a>NOTE</h5><p>It is common practice to use outlets to access other views in your view controller&#x2019;s view hierarchy.<br>Because a view controller manages the content of all its views, outlets let you store references to the views that you need.<br>The outlets themselves are connected to the actual view objects automatically when the views are loaded from the storyboard.</p>
-<p>&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x5728; view controller &#x7684; view &#x5C42;&#x7EA7;&#x4E2D;&#x901A;&#x8FC7;&#x63A5;&#x53E3;&#x8BBF;&#x95EE;&#x5176;&#x4ED6; view&#x3002;<br>&#x7531;&#x4E8E; view controller &#x7BA1;&#x7406;&#x7740;&#x6240;&#x6709;&#x5B83;&#x7684; view &#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x63A5;&#x53E3;&#x80FD;&#x591F;&#x8BA9;&#x4F60;&#x4FDD;&#x6301;&#x5BF9;&#x6240;&#x9700;&#x8981; view &#x7684;&#x5F15;&#x7528;&#x3002;<br>&#x5F53; view &#x4ECE; storyboard &#x52A0;&#x8F7D;&#x65F6;&#xFF0C;&#x63A5;&#x53E3;&#x672C;&#x8EAB;&#x88AB;&#x5B9E;&#x9645;&#x7684; view &#x5BF9;&#x8C61;&#x81EA;&#x52A8;&#x5173;&#x8054;&#x3002;</p>
+<p>NOTE</p>
+<p>It is common practice to use outlets to access other views in your view controller&#x2019;s view hierarchy.<br>Because a view controller manages the content of all its views, outlets let you store references to the views that you need.<br>The outlets themselves are connected to the actual view objects automatically when the views are loaded from the storyboard.</p>
+<p>&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x5728; view controller &#x7684; view &#x5C42;&#x7EA7;&#x4E2D;&#x901A;&#x8FC7;&#x63A5;&#x53E3;&#x8BBF;&#x95EE;&#x5176;&#x4ED6; view&#x3002;&#x7531;&#x4E8E; view controller &#x7BA1;&#x7406;&#x7740;&#x6240;&#x6709;&#x5B83;&#x7684; view &#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x63A5;&#x53E3;&#x80FD;&#x591F;&#x8BA9;&#x4F60;&#x4FDD;&#x6301;&#x5BF9;&#x6240;&#x9700;&#x8981; view &#x7684;&#x5F15;&#x7528;&#x3002;<br>&#x5F53; view &#x4ECE; storyboard &#x52A0;&#x8F7D;&#x65F6;&#xFF0C;&#x63A5;&#x53E3;&#x672C;&#x8EAB;&#x88AB;&#x5B9E;&#x9645;&#x7684; view &#x5BF9;&#x8C61;&#x81EA;&#x52A8;&#x5173;&#x8054;&#x3002;</p>
 </blockquote>
 <p>A content view controller manages all of its views by itself. A container view controller manages its own views plus the root views from one or more of its child view controllers. The container does not manage the content of its children. It manages only the root view, sizing and placing it according to the container&#x2019;s design. Figure 1-2 illustrates the relationship between a split view controller and its children. The split view controller manages the overall size and position of its child views, but the child view controllers manage the actual contents of those views.</p>
 <p><strong>content view controller &#x81EA;&#x5DF1;&#x7BA1;&#x7406;&#x5B83;&#x81EA;&#x5DF1;&#x6240;&#x6709;&#x7684; view&#x3002;&#x800C; container view controller &#x7BA1;&#x7406;&#x5B83;&#x81EA;&#x5DF1;&#x7684; view &#x52A0;&#x4E0A;&#x6765;&#x81EA;&#x5B83;&#x6240;&#x6709;&#x7684;&#x5B50; view controller &#x7684; root view &#x3002;container &#x5E76;&#x4E0D;&#x7BA1;&#x7406;&#x5B83;&#x7684;&#x5B50; container &#x7684;&#x5185;&#x5BB9;&#x3002;&#x5B83;&#x53EA;&#x7BA1;&#x7406; root view&#xFF0C;&#x6839;&#x636E; container &#x7684;&#x8BBE;&#x8BA1;&#x786E;&#x5B9A;&#x5B83;&#x4EEC;&#x7684;&#x5927;&#x5C0F;&#x548C;&#x4F4D;&#x7F6E;&#x3002;&#x56FE; 1-2 &#x8BF4;&#x660E;&#x4E86;&#x4E00;&#x4E2A; split view controller &#x548C;&#x5B83;&#x7684;&#x5B50; controller &#x7684;&#x5173;&#x7CFB;&#x3002;split view controller &#x7BA1;&#x7406;&#x5B83;&#x5B50; view &#x603B;&#x4F53;&#x7684;&#x5927;&#x5C0F;&#x548C;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F46;&#x662F;&#x5B50; view controller &#x624D;&#x7BA1;&#x7406;&#x8FD9;&#x4E9B; view &#x7684;&#x5B9E;&#x9645;&#x5185;&#x5BB9;&#x3002;</strong></p>
@@ -223,14 +224,14 @@
             <div class="column nav-left">
                 
 
-                <a class="ui tiny button disabled"><i class="angle left icon"></i>Previous</a>
+                <a class="ui tiny button disabled"><i class="angle left icon"></i>前一篇</a>
 
                 
             </div>
             <div class="column nav-right">
                 
 
-                <a class="ui tiny button disabled">Next<i class="angle right icon"></i></a>
+                <a class="ui tiny button disabled">下一篇<i class="angle right icon"></i></a>
 
                 
             </div>
@@ -246,7 +247,7 @@
 
                 <div class="ui sticky article-toc" id="article-toc">
                     <!-- toc -->
-                    <ol class="ui ordered list"><li><a href="#View-Management"><span>View Management</span></a><ol><li><a href="#NOTE"><span>NOTE</span></a></li></ol></li></ol></li><li><a href="#Data-Marshaling（数据封送处理）"><span>Data Marshaling（数据封送处理）</span></a></li></ol>
+                    <ol class="ui ordered list"><li><a href="#View-Management"><span>View Management</span></a></li><li><a href="#Data-Marshaling（数据封送处理）"><span>Data Marshaling（数据封送处理）</span></a></li></ol>
                 </div>
 
             </div>
