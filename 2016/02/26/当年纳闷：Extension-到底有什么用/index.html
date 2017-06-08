@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>当年纳闷：Extension 到底有什么用 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="Extension 一般写在类的 .m 文件里。 其实从当年一开始学习 iOS 开发新建一个 Single View Application 的时候起，应该就见过 Extension： 1234567//  ViewController.h#import &amp;lt;UIKit/UIKit.h&amp;gt;@interface ViewController : UIViewController@end">
+<meta name="keywords" content="iOS,objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当年纳闷：Extension 到底有什么用">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/02/26/当年纳闷：Extension-到底有什么用/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="Extension 一般写在类的 .m 文件里。 其实从当年一开始学习 iOS 开发新建一个 Single View Application 的时候起，应该就见过 Extension： 1234567//  ViewController.h#import &amp;lt;UIKit/UIKit.h&amp;gt;@interface ViewController : UIViewController@end">
+<meta property="og:updated_time" content="2017-04-02T06:24:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当年纳闷：Extension 到底有什么用">
+<meta name="twitter:description" content="Extension 一般写在类的 .m 文件里。 其实从当年一开始学习 iOS 开发新建一个 Single View Application 的时候起，应该就见过 Extension： 1234567//  ViewController.h#import &amp;lt;UIKit/UIKit.h&amp;gt;@interface ViewController : UIViewController@end">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-当年纳闷：Extension-到底有什么用" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    当年纳闷：Extension 到底有什么用
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>Extension &#x4E00;&#x822C;&#x5199;&#x5728;&#x7C7B;&#x7684; .m &#x6587;&#x4EF6;&#x91CC;&#x3002;</p>
+<p>&#x5176;&#x5B9E;&#x4ECE;&#x5F53;&#x5E74;&#x4E00;&#x5F00;&#x59CB;&#x5B66;&#x4E60; iOS &#x5F00;&#x53D1;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A; Single View Application &#x7684;&#x65F6;&#x5019;&#x8D77;&#xFF0C;&#x5E94;&#x8BE5;&#x5C31;&#x89C1;&#x8FC7; Extension&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  ViewController.h</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  ViewController.m</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;ViewController.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="comment">//&#x8FD9;&#x91CC;&#x5C31;&#x662F; ViewController &#x7C7B;&#x7684; Extension</span></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line">    </div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning {</div><div class="line">    [<span class="keyword">super</span> didReceiveMemoryWarning];</div><div class="line">    <span class="comment">// Dispose of any resources that can be recreated.</span></div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h3 id="Extension-&#x7684;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;"><a href="#Extension-&#x7684;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;" class="headerlink" title="Extension &#x7684;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;"></a>Extension &#x7684;&#x683C;&#x5F0F;&#x4E3A;&#xFF1A;</h3><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">myClass</span>()</span></div><div class="line">{</div><div class="line"> <span class="comment">// &#x79C1;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;</span></div><div class="line">}</div><div class="line"><span class="comment">// &#x79C1;&#x6709;&#x5C5E;&#x6027;</span></div><div class="line"><span class="comment">// &#x79C1;&#x6709;&#x65B9;&#x6CD5;&#xFF08;&#x53EF;&#x4EE5;&#x7701;&#x7565;&#xFF0C;&#x5728;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#x76F4;&#x63A5;&#x5199;&#xFF09;</span></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<h3 id="Extension-&#x7684;&#x4F5C;&#x7528;"><a href="#Extension-&#x7684;&#x4F5C;&#x7528;" class="headerlink" title="Extension &#x7684;&#x4F5C;&#x7528;"></a>Extension &#x7684;&#x4F5C;&#x7528;</h3><p>Extension &#x7684;&#x4E3B;&#x8981;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x7BA1;&#x7406;&#x7C7B;&#x7684;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x3001;&#x79C1;&#x6709;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x548C;&#x79C1;&#x6709;&#x5C5E;&#x6027;&#x3002;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  Dog.m</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;Dog.h&quot;</span></span></div><div class="line"><span class="comment">//#import &quot;Dog_DogExtension.h&quot;</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Dog</span> ()</span></div><div class="line"></div><div class="line">{</div><div class="line">    <span class="keyword">int</span> age;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>)<span class="built_in">NSString</span> *name;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)sayMyAge;<span class="comment">//&#x53EF;&#x4EE5;&#x7701;&#x7565;</span></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Dog</span></span></div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)sayMyAge{</div><div class="line">    age = <span class="number">2</span>;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;My age is %i&quot;</span>, age);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-02-26T11:43:49.000Z" itemprop="datePublished">2016-02-26</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/objective-C/">objective-C</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/03/02/当年纳闷：protocol-到底是什么东西/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    当年纳闷：protocol 到底是什么东西
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/02/24/当年纳闷：category-到底有什么用/" class="ui tiny button">
+                    
+                    当年纳闷：category 到底有什么用
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#Extension-的格式为："><span>Extension 的格式为：</span></a></li><li><a href="#Extension-的作用"><span>Extension 的作用</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

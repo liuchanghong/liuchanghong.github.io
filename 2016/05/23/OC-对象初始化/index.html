@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>OC 对象初始化 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="##对象初始化时一般会这么写 1Person *person = [Person alloc] init]; alloc 做了什么 alloc 负责创建对象：  分配足够内存来保存对象 写入isa指针 初始化引用计数 重置所有实例变量 —— 所有布尔类型变量全部初始化为 NO，int 类型变量初始化为 0，float 类型变量初始化为 0.0，所有指针被初始化为 nil。  alloc 方法会返回">
+<meta name="keywords" content="iOS,Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC 对象初始化">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/05/23/OC-对象初始化/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="##对象初始化时一般会这么写 1Person *person = [Person alloc] init]; alloc 做了什么 alloc 负责创建对象：  分配足够内存来保存对象 写入isa指针 初始化引用计数 重置所有实例变量 —— 所有布尔类型变量全部初始化为 NO，int 类型变量初始化为 0，float 类型变量初始化为 0.0，所有指针被初始化为 nil。  alloc 方法会返回">
+<meta property="og:updated_time" content="2017-04-23T07:47:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC 对象初始化">
+<meta name="twitter:description" content="##对象初始化时一般会这么写 1Person *person = [Person alloc] init]; alloc 做了什么 alloc 负责创建对象：  分配足够内存来保存对象 写入isa指针 初始化引用计数 重置所有实例变量 —— 所有布尔类型变量全部初始化为 NO，int 类型变量初始化为 0，float 类型变量初始化为 0.0，所有指针被初始化为 nil。  alloc 方法会返回">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-OC-对象初始化" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    OC 对象初始化
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>##&#x5BF9;&#x8C61;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x4E00;&#x822C;&#x4F1A;&#x8FD9;&#x4E48;&#x5199;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Person *person = [Person alloc] init];</div></pre></td></tr></table></figure>
+<p><strong>alloc &#x505A;&#x4E86;&#x4EC0;&#x4E48;</strong></p>
+<p>alloc &#x8D1F;&#x8D23;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x5206;&#x914D;&#x8DB3;&#x591F;&#x5185;&#x5B58;&#x6765;&#x4FDD;&#x5B58;&#x5BF9;&#x8C61;</li>
+<li>&#x5199;&#x5165;isa&#x6307;&#x9488;</li>
+<li>&#x521D;&#x59CB;&#x5316;&#x5F15;&#x7528;&#x8BA1;&#x6570;</li>
+<li>&#x91CD;&#x7F6E;&#x6240;&#x6709;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF; &#x2014;&#x2014; &#x6240;&#x6709;&#x5E03;&#x5C14;&#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x5168;&#x90E8;&#x521D;&#x59CB;&#x5316;&#x4E3A; NO&#xFF0C;int &#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x521D;&#x59CB;&#x5316;&#x4E3A; 0&#xFF0C;float &#x7C7B;&#x578B;&#x53D8;&#x91CF;&#x521D;&#x59CB;&#x5316;&#x4E3A; 0.0&#xFF0C;&#x6240;&#x6709;&#x6307;&#x9488;&#x88AB;&#x521D;&#x59CB;&#x5316;&#x4E3A; nil&#x3002;</li>
+</ol>
+<p>alloc &#x65B9;&#x6CD5;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x672A;&#x88AB;&#x521D;&#x59CB;&#x5316;&#x7684;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x3002;</p>
+<a id="more"></a>
+<p><strong>init &#x505A;&#x4E86;&#x4EC0;&#x4E48;</strong></p>
+<p>init &#x8D1F;&#x8D23;<strong>&#x521D;&#x59CB;&#x5316;</strong>&#x5BF9;&#x8C61;, &#x4F7F;&#x5BF9;&#x8C61;&#x53D8;&#x4E3A;&#x53EF;&#x7528;&#x72B6;&#x6001;&#xFF1A;&#x5373;&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x80FD;&#x591F;&#x88AB;&#x8D4B;&#x4E88;&#x5408;&#x7406;&#x4E14;&#x6709;&#x6548;&#x7684;&#x503C;&#x3002;</p>
+<p>##&#x91CD;&#x5199; init &#x65B9;&#x6CD5;&#x65F6;&#x4E00;&#x822C;&#x4F1A;&#x8FD9;&#x6837;&#x5199;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">instancetype</span>)init</div><div class="line">{</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) {</div><div class="line">        <span class="comment">//&#x641E;&#x4E00;&#x4E9B;&#x4E8B;&#x60C5;</span></div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x4E2D;&#x6700;&#x5148;&#x8FD0;&#x884C;&#x7684;&#x4EE3;&#x7801;&#x662F; [super init] &#xFF0C;&#x90A3;&#x8FD9;&#x53E5;&#x4EE3;&#x7801;&#x662F;&#x4EC0;&#x4E48;&#x610F;&#x601D;&#x5462;&#xFF1F;</p>
+<p>&#x8FD9;&#x53E5;&#x4EE3;&#x7801;&#x8FD0;&#x884C;&#x540E;&#x6709;&#x4E09;&#x79CD;&#x7ED3;&#x679C;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;</li>
+<li>&#x521D;&#x59CB;&#x5316;&#x5931;&#x8D25;&#xFF0C;&#x6B64;&#x65F6; init &#x65B9;&#x6CD5;&#x4F1A;&#x8FD4;&#x56DE; nil</li>
+<li>&#x6267;&#x884C;&#x4E4B;&#x540E;&#xFF0C;&#x5185;&#x5B58;&#x6307;&#x5411;&#x4E86;&#x4E0D;&#x76F8;&#x5173;&#x7684;&#x5730;&#x5740;&#x3002;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x7684;&#x51FA;&#x73B0;&#xFF0C;&#x4E00;&#x822C;&#x662F;&#x4E00;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;&#x5355;&#x4F8B;&#x3001;&#x7C7B;&#x7C07;&#x3001;&#x5BF9;&#x8C61;&#x4E3A; NSNumber &#x7C7B;&#x578B;&#x3001;&#x7236;&#x7C7B;&#x5728;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;&#x91CA;&#x653E;&#x4E86;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x65B0;&#x5F00;&#x8F9F;&#x4E86;&#x65B0;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#x3002;&#xFF08;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF1F;&#xFF09;</li>
+</ol>
+<p>&#x300E;&#x5982;&#x679C; A &#x7684;&#x8D85;&#x7C7B;&#x6CA1;&#x6709;&#x6210;&#x529F;&#x521D;&#x59CB;&#x5316;&#x5B83;&#x81EA;&#x5DF1;&#xFF0C;&#x90A3;&#x5C31;&#x5FC5;&#x987B;&#x5047;&#x8BBE; A &#x5728;&#x4E00;&#x4E2A;&#x77DB;&#x76FE;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x5E76;&#x4E14;&#x5728; A &#x7684;&#x5B9E;&#x73B0;&#x4E2D;&#x4E0D;&#x8981;&#x5904;&#x7406; A &#x81EA;&#x5DF1;&#x7684;&#x521D;&#x59CB;&#x5316;&#x903B;&#x8F91;&#xFF0C;&#x540C;&#x65F6;&#x8FD4;&#x56DE; nil&#x3002;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x8FD9;&#x6837;&#x505A;&#xFF0C;A &#x4F1A;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x4E0D;&#x80FD;&#x7528;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x5B83;&#x7684;&#x884C;&#x4E3A;&#x662F;&#x4E0D;&#x53EF;&#x9884;&#x6D4B;&#x7684;&#xFF0C;&#x6700;&#x7EC8;&#x53EF;&#x80FD;&#x4F1A;&#x5BFC;&#x81F4;&#x4F60;&#x7684; app &#x53D1;&#x751F; crash&#x3002;&#x300F; &#x2014;&#x2014; &#x300A;&#x7985;&#x4E0E; Objective-C &#x7F16;&#x7A0B;&#x827A;&#x672F;&#x300B;</p>
+<p>&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x901A;&#x5E38;&#x7684;&#x5EFA;&#x8BAE;&#x5199;&#x6CD5;&#xFF0C;&#x8D4B;&#x503C;&#x5E76;&#x6D4B;&#x8BD5;&#x662F;&#x5426;&#x4E3A; nil &#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x8D85;&#x7C7B;&#x5728;&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;&#x4E2D;&#x53D1;&#x751F;&#x6539;&#x53D8;&#xFF0C;&#x8FD4;&#x56DE;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-05-23T11:43:52.000Z" itemprop="datePublished">2016-05-23</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/Objective-C/">Objective-C</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/07/09/iOS基础复习-成员变量、全局变量与局部变量/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    iOS 中的成员变量、全局变量与局部变量
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/04/09/iOS基础——self、super以及init方法解析/" class="ui tiny button">
+                    
+                    iOS基础复习——self、super以及init方法解析
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>当年纳闷 —— KVC &amp; KVO | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="KVC （ key value coding )通常我们这样更改对象状态，即为对象赋值： 12[dog setName:5];dog.name = 5; KVC 是一种简洁的更改对象状态的方式，其实现方法是使用字符串来描述对象需要更改的属性。 KVC 中使用 valueForKey: 和 setValue: forKey: 两个方法以字符串形式向对象发送消息。">
+<meta name="keywords" content="ios,当年纳闷">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当年纳闷 —— KVC &amp; KVO">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/03/07/当年纳闷-——-KVC-KVO/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="KVC （ key value coding )通常我们这样更改对象状态，即为对象赋值： 12[dog setName:5];dog.name = 5; KVC 是一种简洁的更改对象状态的方式，其实现方法是使用字符串来描述对象需要更改的属性。 KVC 中使用 valueForKey: 和 setValue: forKey: 两个方法以字符串形式向对象发送消息。">
+<meta property="og:updated_time" content="2017-04-07T08:43:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当年纳闷 —— KVC &amp; KVO">
+<meta name="twitter:description" content="KVC （ key value coding )通常我们这样更改对象状态，即为对象赋值： 12[dog setName:5];dog.name = 5; KVC 是一种简洁的更改对象状态的方式，其实现方法是使用字符串来描述对象需要更改的属性。 KVC 中使用 valueForKey: 和 setValue: forKey: 两个方法以字符串形式向对象发送消息。">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-当年纳闷-——-KVC-KVO" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    当年纳闷 —— KVC &amp; KVO
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="KVC-&#xFF08;-key-value-coding"><a href="#KVC-&#xFF08;-key-value-coding" class="headerlink" title="KVC &#xFF08; key value coding )"></a>KVC &#xFF08; key value coding )</h2><p>&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x8FD9;&#x6837;&#x66F4;&#x6539;&#x5BF9;&#x8C61;&#x72B6;&#x6001;&#xFF0C;&#x5373;&#x4E3A;&#x5BF9;&#x8C61;&#x8D4B;&#x503C;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[dog setName:<span class="number">5</span>];</div><div class="line">dog.name = <span class="number">5</span>;</div></pre></td></tr></table></figure>
+<p>KVC &#x662F;&#x4E00;&#x79CD;&#x7B80;&#x6D01;&#x7684;&#x66F4;&#x6539;&#x5BF9;&#x8C61;&#x72B6;&#x6001;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5176;&#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528;&#x5B57;&#x7B26;&#x4E32;&#x6765;&#x63CF;&#x8FF0;&#x5BF9;&#x8C61;&#x9700;&#x8981;&#x66F4;&#x6539;&#x7684;&#x5C5E;&#x6027;&#x3002;</p>
+<p>KVC &#x4E2D;&#x4F7F;&#x7528; <em>valueForKey:</em> &#x548C; <em>setValue: forKey:</em> &#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x4EE5;&#x5B57;&#x7B26;&#x4E32;&#x5F62;&#x5F0F;&#x5411;&#x5BF9;&#x8C61;&#x53D1;&#x9001;&#x6D88;&#x606F;&#x3002;<br><a id="more"></a><br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">NSString</span> *name = [dog valueForKey :<span class="string">@&quot;name&quot;</span>];</div><div class="line">[dog setValue:<span class="string">@&quot;Dogge&quot;</span> forKey:<span class="string">@&quot;name&quot;</span>];</div></pre></td></tr></table></figure></p>
+<h4 id="keyPath"><a href="#keyPath" class="headerlink" title="keyPath"></a>keyPath</h4><p>&#x9664;&#x4E86;&#x901A;&#x8FC7; key &#x6765;&#x8BBF;&#x95EE;&#xFF0C;KVC &#x8FD8;&#x652F;&#x6301;&#x901A;&#x8FC7; keyPath &#x6765;&#x8BBF;&#x95EE;&#x548C;&#x8D4B;&#x503C;&#x3002;</p>
+<p>student &#x7684;&#x5C5E;&#x6027; card &#x7684; no &#x5C5E;&#x6027;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[student setValue:@&quot;1122334&quot; forKeyPath:@&quot;card.no&quot;];</div><div class="line">[student valueForKeyPath:@&quot;card.no&quot;];</div></pre></td></tr></table></figure>
+<h4 id="key-&#x548C;-keyPath-&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x540C;"><a href="#key-&#x548C;-keyPath-&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x540C;" class="headerlink" title="key &#x548C; keyPath &#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x540C;"></a>key &#x548C; keyPath &#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x540C;</h4><p>key &#x53EA;&#x80FD;&#x63A5;&#x53D7;&#x5F53;&#x524D;&#x7C7B;&#x6240;&#x5177;&#x6709;&#x7684;&#x5C5E;&#x6027;&#x3002;</p>
+<p>keypath: &#x9664;&#x4E86;&#x80FD;&#x63A5;&#x53D7;&#x5F53;&#x524D;&#x7C7B;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x8FD8;&#x80FD;&#x63A5;&#x53D7;&#x5F53;&#x524D;&#x7C7B;&#x5C5E;&#x6027;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x5373;&#x53EF;&#x4EE5;&#x63A5;&#x53D7;&#x5173;&#x7CFB;&#x94FE;&#x3002;</p>
+<h2 id="KVO-&#xFF08;-key-value-observing-&#xFF09;"><a href="#KVO-&#xFF08;-key-value-observing-&#xFF09;" class="headerlink" title="KVO &#xFF08; key value observing &#xFF09;"></a>KVO &#xFF08; key value observing &#xFF09;</h2><p>KVO &#x7528;&#x6765;&#x76D1;&#x542C;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5728; Cocoa &#x7684; MVC &#x6846;&#x67B6;&#x4E2D;&#xFF0C;&#x67B6;&#x8D77; ViewController &#x548C; Model &#x6C9F;&#x901A;&#x7684;&#x6865;&#x6881;&#x3002;</p>
+<p>&#x4E00;&#x822C;&#x4F7F;&#x7528;&#x6B65;&#x9AA4;&#x4E3A;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x88AB;&#x76D1;&#x542C;&#x8005;&#x901A;&#x8FC7; <em>addObserver:forKeyPath:options:context:</em> &#x65B9;&#x6CD5;&#xFF0C;&#x6DFB;&#x52A0;&#x76D1;&#x542C;</li>
+<li>&#x76D1;&#x542C;&#x8005;&#x91CD;&#x5199; <em>observeValueForKeyPath:ofObject:change:context:</em> &#x65B9;&#x6CD5;&#xFF0C;&#x5B9E;&#x73B0;&#x76D1;&#x542C;</li>
+<li>&#x88AB;&#x76D1;&#x542C;&#x8005;&#x79FB;&#x9664;&#x76D1;&#x542C;</li>
+</ol>
+<p>&#x793A;&#x4F8B;&#xFF1A;</p>
+<p>&#x88AB;&#x76D1;&#x542C;&#x8005;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  Entity.h</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Entity</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) <span class="built_in">NSString</span> *name;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  Entity.m</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;Entity.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Entity</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">instancetype</span>)init</div><div class="line">{</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) {</div><div class="line">        _name = <span class="string">@&quot;name&quot;</span>;</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x76D1;&#x542C;&#x8005;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  ViewController.h</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span></span></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  ViewController.m</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;ViewController.h&quot;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;Entity.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>) Entity *model;</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    </div><div class="line">    <span class="keyword">self</span>.model = [[Entity alloc] init];</div><div class="line">    </div><div class="line">    <span class="built_in">UIButton</span> *btn1 = [[<span class="built_in">UIButton</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">100</span>, <span class="number">100</span>,<span class="number">200</span>, <span class="number">30</span>)];</div><div class="line">    btn1.backgroundColor = [<span class="built_in">UIColor</span> redColor];</div><div class="line">    btn1.tag = <span class="number">100001</span>;</div><div class="line">    [btn1 addTarget:<span class="keyword">self</span> action:<span class="keyword">@selector</span>(changeName:) forControlEvents:<span class="built_in">UIControlEventTouchUpInside</span>];</div><div class="line">    [btn1 setTitle:<span class="string">@&quot;&#x6539;&#x53D8;name&quot;</span> forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">    [<span class="keyword">self</span>.model addObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@&quot;name&quot;</span> options:<span class="built_in">NSKeyValueObservingOptionNew</span> context:<span class="literal">nil</span>];</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span>.view addSubview:btn1]; </div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)changeName: (<span class="built_in">UIButton</span> *)btn{</div><div class="line">    <span class="keyword">switch</span> (btn.tag) {</div><div class="line">        <span class="keyword">case</span> <span class="number">100001</span>:</div><div class="line">            <span class="keyword">self</span>.model.name = <span class="string">@&quot;change&quot;</span>;</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)observeValueForKeyPath:(<span class="built_in">NSString</span> *)keyPath ofObject:(<span class="keyword">id</span>)object change:(<span class="built_in">NSDictionary</span>&lt;<span class="built_in">NSKeyValueChangeKey</span>,<span class="keyword">id</span>&gt; *)change context:(<span class="keyword">void</span> *)context{</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;%@&quot;</span>, keyPath);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//&#x79FB;&#x9664;&#x76D1;&#x542C;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x9002;&#x65F6;&#x4F7F;&#x7528;&#x3002;</span></div><div class="line">-(<span class="keyword">void</span>)deallocMe{</div><div class="line">    [<span class="keyword">self</span>.model removeObserver:<span class="keyword">self</span> forKeyPath:<span class="string">@&quot;name&quot;</span>];</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning {</div><div class="line">    [<span class="keyword">super</span> didReceiveMemoryWarning];</div><div class="line">    <span class="comment">// Dispose of any resources that can be recreated.</span></div><div class="line">}</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x65F6;&#x5019;&#x70B9;&#x51FB; button&#xFF0C;name &#x7684;&#x503C;&#x6539;&#x53D8;&#x65F6;&#xFF0C;&#x76D1;&#x542C;&#x8005;&#xFF08;&#x6B64;&#x793A;&#x4F8B;&#x4E2D;&#x5C31;&#x662F; ViewController&#xFF09;&#x5C31;&#x4F1A;&#x53D1;&#x73B0;&#xFF0C;&#x4ECE;&#x800C;&#x89E6;&#x53D1; <em>-(void)observeValueForKeyPath:(NSString \</em>)keyPath ofObject:(id)object change:(NSDictionary<nskeyvaluechangekey,id> *)change context:(void *)context* &#x65B9;&#x6CD5;&#x3002;</nskeyvaluechangekey,id></p>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;<br>&#x53EA;&#x6709;&#x5728; .h &#x4E2D;&#x66B4;&#x9732;&#x51FA;&#x6765;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x624D;&#x80FD;&#x88AB; KVO &#x76D1;&#x542C;&#x5230;&#xFF0C;.m &#x4E2D;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x662F;&#x4E0D;&#x80FD;&#x591F;&#x88AB;&#x76D1;&#x542C;&#x5230;&#x7684;&#x3002;</strong></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-07T11:41:28.000Z" itemprop="datePublished">2016-03-07</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/ios/">ios</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/当年纳闷/">当年纳闷</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/04/09/iOS基础——self、super以及init方法解析/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    iOS基础复习——self、super以及init方法解析
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/03/06/Objective-C的动态特性/" class="ui tiny button">
+                    
+                    Objective-C的动态特性
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#KVC-（-key-value-coding"><span>KVC （ key value coding )</span></a><ol><li><a href="#keyPath"><span>keyPath</span></a></li><li><a href="#key-和-keyPath-有什么不同"><span>key 和 keyPath 有什么不同</span></a></li></ol></li></ol></li><li><a href="#KVO-（-key-value-observing-）"><span>KVO （ key value observing ）</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

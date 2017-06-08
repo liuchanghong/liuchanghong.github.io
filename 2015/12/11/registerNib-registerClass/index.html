@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>registerNib &amp; registerClass | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="123UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;DataTableViewCell&quot;];UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;DataTableViewCell&quot; forIndexPath:ind">
+<meta name="keywords" content="Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="registerNib &amp; registerClass">
+<meta property="og:url" content="https://liuchanghong.github.io/2015/12/11/registerNib-registerClass/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="123UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;DataTableViewCell&quot;];UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;DataTableViewCell&quot; forIndexPath:ind">
+<meta property="og:updated_time" content="2017-04-23T11:38:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="registerNib &amp; registerClass">
+<meta name="twitter:description" content="123UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;DataTableViewCell&quot;];UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@&quot;DataTableViewCell&quot; forIndexPath:ind">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-registerNib-registerClass" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    registerNib &amp; registerClass
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@&quot;DataTableViewCell&quot;</span>];</div><div class="line"></div><div class="line"><span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@&quot;DataTableViewCell&quot;</span> forIndexPath:indexPath];</div></pre></td></tr></table></figure>
+<p>&#x4EE5;&#x4E0A;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x6709;&#x4EC0;&#x4E48;&#x533A;&#x522B;&#x5462;&#xFF1F;</p>
+<a id="more"></a>
+<p>&#x7B2C;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x5FC5;&#x987B;&#x5411; tableView &#x6CE8;&#x518C; cell &#x7684; Identifier&#xFF0C;&#x4F46;&#x5FC5;&#x987B;&#x5224;&#x65AD;&#x8FD4;&#x56DE;&#x7684; cell &#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x3002;&#x5982;&#x679C;&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A; cell&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">UITableViewCell</span>*)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath{</div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@&quot;DataTableViewCell&quot;</span>];</div><div class="line">    <span class="keyword">if</span> (!cell) {</div><div class="line">        cell = [[<span class="built_in">UITableViewCell</span> alloc]initWithStyle:<span class="built_in">UITableViewCellStyleDefault</span> reuseIdentifier:<span class="string">@&quot;DataTableViewCell&quot;</span>];   </div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7B2C;&#x4E8C;&#x4E2A;&#x65B9;&#x6CD5;&#x5FC5;&#x987B;&#x5411; tableView &#x6CE8;&#x518C; cell &#x7684; Identifier&#xFF0C;&#x4F46;&#x662F;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x5224;&#x65AD;&#x8FD4;&#x56DE;&#x7684; cell &#x662F;&#x5426;&#x4E3A;&#x7A7A;&#x8FD9;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[_tableView registerClass:[<span class="built_in">UITableViewCell</span> <span class="keyword">class</span>] forCellReuseIdentifier:<span class="string">@&quot;UITableViewCell&quot;</span>];</div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">-(<span class="built_in">UITableViewCell</span> *)tableView:(<span class="built_in">UITableView</span> *)tableView cellForRowAtIndexPath:(<span class="built_in">NSIndexPath</span> *)indexPath {</div><div class="line">    <span class="built_in">UITableViewCell</span> *cell = [tableView dequeueReusableCellWithIdentifier:<span class="string">@&quot;UITableViewCell&quot;</span> forIndexPath:indexPath];</div><div class="line">    cell.textLabel.text = <span class="keyword">self</span>.dataSourceArray[indexPath.row];</div><div class="line">    <span class="keyword">return</span> cell;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x533A;&#x522B;&#x5728;&#x4E8E;&#x7B2C;&#x4E00;&#x79CD;&#x5199;&#x6CD5;&#x53D6;&#x51FA;&#x91CD;&#x7528; cell &#x7684;&#x65F6;&#x5019;&#x53EF;&#x80FD;&#x662F;&#x7A7A;&#x7684;&#xFF0C;&#x800C;&#x7B2C;&#x4E8C;&#x79CD;&#x5199;&#x6CD5;&#x5982;&#x679C;&#x53D6;&#x51FA;&#x7A7A;&#x7684;&#x90A3;&#x5C31;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684; cell&#xFF0C;register &#x5C31;&#x662F;&#x544A;&#x8BC9;&#x5B83;&#x521B;&#x5EFA;&#x4E2A;&#x4EC0;&#x4E48;&#x6837;&#x7684; cell&#x3002;</p>
+<p>###&#x6CE8;&#x518C;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x4E24;&#x79CD;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)registerNib:(<span class="keyword">nullable</span> <span class="built_in">UINib</span> *)nib forCellReuseIdentifier:(<span class="built_in">NSString</span> *)identifier <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">5</span>_0);</div><div class="line">- (<span class="keyword">void</span>)registerClass:(<span class="keyword">nullable</span> Class)cellClass forCellReuseIdentifier:(<span class="built_in">NSString</span> *)identifier <span class="built_in">NS_AVAILABLE_IOS</span>(<span class="number">6</span>_0);</div></pre></td></tr></table></figure>
+<p>&#x5982;&#x679C;&#x662F;&#x7528;NIB&#x81EA;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;Cell&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x8C03;&#x7528; registerNib:forCellReuseIdentifier:</p>
+<p>&#x5982;&#x679C;&#x662F;&#x7528;&#x4EE3;&#x7801;&#x81EA;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;Cell&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x8C03; registerClass:forCellReuseIdentifier:</p>
+<p>&#x82E5;&#x4F7F;&#x7528; registerClass &#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x4E14;&#x4E0D;&#x60F3;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x6837;&#x5F0F;&#x7684; cell &#x65F6;&#xFF0C;&#x91CD;&#x5199;&#x81EA;&#x5B9A;&#x4E49; cell &#x7684; initWithStyle:withReuseableCellIdentifier: &#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x5E03;&#x5C40; </p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  TestTableViewCell.m</span></div><div class="line"></div><div class="line">-(<span class="keyword">instancetype</span>)initWithStyle:(<span class="built_in">UITableViewCellStyle</span>)style reuseIdentifier:(<span class="built_in">NSString</span> *)reuseIdentifier {</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> initWithStyle:style reuseIdentifier:reuseIdentifier];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>)</div><div class="line">    {</div><div class="line">        <span class="comment">// cell&#x9875;&#x9762;&#x5E03;&#x5C40;</span></div><div class="line">        [<span class="keyword">self</span> setupView];</div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2015-12-11T11:37:13.000Z" itemprop="datePublished">2015-12-11</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/Objective-C/">Objective-C</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/01/20/测试一下音乐播放器/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    关于郑州的记忆
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a class="ui tiny button disabled">Next<i class="angle right icon"></i></a>
+
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

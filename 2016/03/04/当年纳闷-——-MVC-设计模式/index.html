@@ -1,0 +1,278 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>当年纳闷 —— MVC 设计模式 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="MVC - Modal , View , Controller 用意在于将数据与视图分离开来 － 解藕。 MVC 约定， Model 和 View 互相不能控制彼此。Model 负责存储、定义、操作数据，当 Model 中的数据发生变化时，与之对应的 View 应更新。 既然它们互相不能控制，这就需要一种机制来支持。为此 iOS 框架提供了两种支持机制： Notification 和 KVO（ K">
+<meta name="keywords" content="iOS,MVC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当年纳闷 —— MVC 设计模式">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/03/04/当年纳闷-——-MVC-设计模式/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="MVC - Modal , View , Controller 用意在于将数据与视图分离开来 － 解藕。 MVC 约定， Model 和 View 互相不能控制彼此。Model 负责存储、定义、操作数据，当 Model 中的数据发生变化时，与之对应的 View 应更新。 既然它们互相不能控制，这就需要一种机制来支持。为此 iOS 框架提供了两种支持机制： Notification 和 KVO（ K">
+<meta property="og:updated_time" content="2017-04-10T08:14:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当年纳闷 —— MVC 设计模式">
+<meta name="twitter:description" content="MVC - Modal , View , Controller 用意在于将数据与视图分离开来 － 解藕。 MVC 约定， Model 和 View 互相不能控制彼此。Model 负责存储、定义、操作数据，当 Model 中的数据发生变化时，与之对应的 View 应更新。 既然它们互相不能控制，这就需要一种机制来支持。为此 iOS 框架提供了两种支持机制： Notification 和 KVO（ K">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-当年纳闷-——-MVC-设计模式" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    当年纳闷 —— MVC 设计模式
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>MVC - Modal , View , Controller</p>
+<p>&#x7528;&#x610F;&#x5728;&#x4E8E;&#x5C06;&#x6570;&#x636E;&#x4E0E;&#x89C6;&#x56FE;&#x5206;&#x79BB;&#x5F00;&#x6765; &#xFF0D; &#x89E3;&#x85D5;&#x3002;</p>
+<h3 id="MVC-&#x7EA6;&#x5B9A;&#xFF0C;-Model-&#x548C;-View-&#x4E92;&#x76F8;&#x4E0D;&#x80FD;&#x63A7;&#x5236;&#x5F7C;&#x6B64;&#x3002;"><a href="#MVC-&#x7EA6;&#x5B9A;&#xFF0C;-Model-&#x548C;-View-&#x4E92;&#x76F8;&#x4E0D;&#x80FD;&#x63A7;&#x5236;&#x5F7C;&#x6B64;&#x3002;" class="headerlink" title="MVC &#x7EA6;&#x5B9A;&#xFF0C; Model &#x548C; View &#x4E92;&#x76F8;&#x4E0D;&#x80FD;&#x63A7;&#x5236;&#x5F7C;&#x6B64;&#x3002;"></a>MVC &#x7EA6;&#x5B9A;&#xFF0C; Model &#x548C; View &#x4E92;&#x76F8;&#x4E0D;&#x80FD;&#x63A7;&#x5236;&#x5F7C;&#x6B64;&#x3002;</h3><p>Model &#x8D1F;&#x8D23;&#x5B58;&#x50A8;&#x3001;&#x5B9A;&#x4E49;&#x3001;&#x64CD;&#x4F5C;&#x6570;&#x636E;&#xFF0C;&#x5F53; Model &#x4E2D;&#x7684;&#x6570;&#x636E;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;&#x4E0E;&#x4E4B;&#x5BF9;&#x5E94;&#x7684; View &#x5E94;&#x66F4;&#x65B0;&#x3002; &#x65E2;&#x7136;&#x5B83;&#x4EEC;&#x4E92;&#x76F8;&#x4E0D;&#x80FD;&#x63A7;&#x5236;&#xFF0C;&#x8FD9;&#x5C31;&#x9700;&#x8981;&#x4E00;&#x79CD;&#x673A;&#x5236;&#x6765;&#x652F;&#x6301;&#x3002;&#x4E3A;&#x6B64; iOS &#x6846;&#x67B6;&#x63D0;&#x4F9B;&#x4E86;&#x4E24;&#x79CD;&#x652F;&#x6301;&#x673A;&#x5236;&#xFF1A; Notification &#x548C; KVO&#xFF08; Key-Value Observing &#xFF09;&#x6765;&#x901A;&#x77E5; Controller &#xFF0C;&#x8FDB;&#x800C;&#x63A7;&#x5236; View&#x3002;</p>
+<a id="more"></a>
+<h3 id="MVC-&#x7EA6;&#x5B9A;&#xFF0C;-View-&#x4E0D;&#x5141;&#x8BB8;&#x76F4;&#x63A5;&#x63A7;&#x5236;-Controller&#xFF0C;-&#x53EA;&#x80FD;&#x7531;-Controller-&#x63A7;&#x5236;-View-&#x663E;&#x793A;&#x4EC0;&#x4E48;&#x6570;&#x636E;&#x3002;"><a href="#MVC-&#x7EA6;&#x5B9A;&#xFF0C;-View-&#x4E0D;&#x5141;&#x8BB8;&#x76F4;&#x63A5;&#x63A7;&#x5236;-Controller&#xFF0C;-&#x53EA;&#x80FD;&#x7531;-Controller-&#x63A7;&#x5236;-View-&#x663E;&#x793A;&#x4EC0;&#x4E48;&#x6570;&#x636E;&#x3002;" class="headerlink" title="MVC &#x7EA6;&#x5B9A;&#xFF0C; View &#x4E0D;&#x5141;&#x8BB8;&#x76F4;&#x63A5;&#x63A7;&#x5236; Controller&#xFF0C; &#x53EA;&#x80FD;&#x7531; Controller &#x63A7;&#x5236; View &#x663E;&#x793A;&#x4EC0;&#x4E48;&#x6570;&#x636E;&#x3002;"></a>MVC &#x7EA6;&#x5B9A;&#xFF0C; View &#x4E0D;&#x5141;&#x8BB8;&#x76F4;&#x63A5;&#x63A7;&#x5236; Controller&#xFF0C; &#x53EA;&#x80FD;&#x7531; Controller &#x63A7;&#x5236; View &#x663E;&#x793A;&#x4EC0;&#x4E48;&#x6570;&#x636E;&#x3002;</h3><p>View &#x6240;&#x8981;&#x663E;&#x793A;&#x7684;&#x6570;&#x636E;&#x662F;&#x6765;&#x6E90;&#x4E8E; Modal&#xFF0C;View &#x4E0A;&#x4EA7;&#x751F;&#x7684;&#x4E8B;&#x4EF6; &#xFF08; &#x6BD4;&#x5982; Touch&#x4E8B;&#x4EF6;&#xFF09;&#x9700;&#x8981;&#x901A;&#x77E5; Controller&#x3002;&#x65E2;&#x7136; View &#x4E0D;&#x80FD;&#x4E3B;&#x52A8;&#x548C; Controller &#x901A;&#x4FE1;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x8BBE;&#x7F6E; View &#x7684; Action Target&#x3002;&#x5982;&#x8BBE;&#x7F6E; UIButton &#x7684; Touch up inside &#x7684;Action Target&#x3002;</li>
+<li>&#x8BBE;&#x7F6E; View &#x7684; Delegate&#xFF0C;&#x5982; UIAlertViewDelegate&#xFF0C; UIActionSheetDelegate&#xFF0C;UITextFieldDelegate&#x7B49;&#x3002;</li>
+<li>&#x8BBE;&#x7F6E; View DataSource&#xFF0C;&#x5982;UITableViewDataSource&#x3002;</li>
+</ol>
+<p>&#x901A;&#x8FC7;&#x4EE5;&#x4E0A;&#x4E09;&#x79CD;&#x6A21;&#x5F0F;&#xFF0C;View &#x65E2;&#x80FD;&#x5411; Controller &#x901A;&#x4FE1;&#xFF0C;&#x53C8;&#x65E0;&#x9700;&#x77E5;&#x9053;&#x5177;&#x4F53;&#x7684; Controller &#x662F;&#x8C01;&#xFF0C;&#x8FD9;&#x6837;&#xFF0C;View &#x5C31;&#x4E0E; Controller &#x89E3;&#x8026;&#x4E86;&#x3002;</p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-04T11:12:33.000Z" itemprop="datePublished">2016-03-04</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/MVC/">MVC</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/03/04/当年纳闷：block-是什么/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    当年纳闷：block 是什么
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/03/03/当年纳闷：delegate-怎么用，用来干什么/" class="ui tiny button">
+                    
+                    当年纳闷：delegate 怎么用，用来干什么
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#MVC-约定，-Model-和-View-互相不能控制彼此。"><span>MVC 约定， Model 和 View 互相不能控制彼此。</span></a></li><li><a href="#MVC-约定，-View-不允许直接控制-Controller，-只能由-Controller-控制-View-显示什么数据。"><span>MVC 约定， View 不允许直接控制 Controller， 只能由 Controller 控制 View 显示什么数据。</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

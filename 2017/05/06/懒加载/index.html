@@ -1,0 +1,273 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>懒加载 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x61D2;&amp;#x52A0;&amp;#x8F7D;LazyLoad &amp;#x5EF6;&amp;#x8FDF;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x5728;&amp;#x9700;&amp;#x8981;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x624D;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x53EA;&amp;#x52A0;&amp;#x8F7D">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="懒加载">
+<meta property="og:url" content="https://liuchanghong.github.io/2017/05/06/懒加载/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x61D2;&amp;#x52A0;&amp;#x8F7D;LazyLoad &amp;#x5EF6;&amp;#x8FDF;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x5728;&amp;#x9700;&amp;#x8981;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x624D;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x53EA;&amp;#x52A0;&amp;#x8F7D">
+<meta property="og:updated_time" content="2017-05-06T15:45:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="懒加载">
+<meta name="twitter:description" content="&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x61D2;&amp;#x52A0;&amp;#x8F7D;LazyLoad &amp;#x5EF6;&amp;#x8FDF;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x5728;&amp;#x9700;&amp;#x8981;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x624D;&amp;#x52A0;&amp;#x8F7D;&amp;#xFF0C;&amp;#x53EA;&amp;#x52A0;&amp;#x8F7D">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-懒加载" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    懒加载
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x4EC0;&#x4E48;&#x662F;&#x61D2;&#x52A0;&#x8F7D;"><a href="#&#x4EC0;&#x4E48;&#x662F;&#x61D2;&#x52A0;&#x8F7D;" class="headerlink" title="&#x4EC0;&#x4E48;&#x662F;&#x61D2;&#x52A0;&#x8F7D;"></a>&#x4EC0;&#x4E48;&#x662F;&#x61D2;&#x52A0;&#x8F7D;</h3><p>LazyLoad</p>
+<p>&#x5EF6;&#x8FDF;&#x52A0;&#x8F7D;&#xFF0C;&#x5728;&#x9700;&#x8981;&#x7684;&#x65F6;&#x5019;&#x624D;&#x52A0;&#x8F7D;&#xFF0C;&#x53EA;&#x52A0;&#x8F7D;&#x4E00;&#x6B21;&#x3002;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line">	[<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.myImageView];</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//&#x91CD;&#x5199; myImageView &#x7684; getter &#x65B9;&#x6CD5;</span></div><div class="line">- (<span class="built_in">UIImageView</span> *)myImageView {</div><div class="line">	<span class="comment">//&#x5FC5;&#x987B;&#x505A;&#x975E;&#x7A7A;&#x5224;&#x65AD;&#xFF0C;&#x4FDD;&#x8BC1;&#x4EC5;&#x4EC5;&#x52A0;&#x8F7D;&#x4E00;&#x6B21;&#x3002;</span></div><div class="line">	<span class="keyword">if</span>(!_myImageView) {</div><div class="line">		_myImageView = [[<span class="built_in">UIImageView</span> alloc] init];</div><div class="line">	}</div><div class="line">	<span class="keyword">return</span> _myImageView;</div><div class="line">}</div></pre></td></tr></table></figure>
+<h3 id="&#x7279;&#x70B9;"><a href="#&#x7279;&#x70B9;" class="headerlink" title="&#x7279;&#x70B9;"></a>&#x7279;&#x70B9;</h3><p>&#x6548;&#x7387;&#x4F4E;&#xFF0C;&#x5360;&#x7528;&#x5185;&#x5B58;&#x5C0F;&#x3002;</p>
+<h3 id="&#x597D;&#x5904;"><a href="#&#x597D;&#x5904;" class="headerlink" title="&#x597D;&#x5904;"></a>&#x597D;&#x5904;</h3><ol class="ui list">
+<li>&#x6253;&#x7834;&#x5BF9;&#x8C61;&#x5F7C;&#x6B64;&#x5F15;&#x7528;&#x65F6;&#x58F0;&#x660E;&#x987A;&#x5E8F;&#x7684;&#x9650;&#x5236;</li>
+<li>&#x4E0D;&#x5FC5;&#x5C06;&#x521B;&#x5EFA;&#x4EE3;&#x7801;&#x5168;&#x90E8;&#x5199;&#x5728; viewDidLoad &#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x589E;&#x5F3A;&#x7684;&#x4EE3;&#x7801;&#x7684;&#x53EF;&#x8BFB;&#x6027;</li>
+<li>&#x6BCF;&#x4E2A;&#x63A7;&#x4EF6;&#x7684; getter &#x65B9;&#x6CD5;&#x4E2D;&#xFF0C;&#x5206;&#x522B;&#x8D1F;&#x8D23;&#x81EA;&#x5DF1;&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x4EE3;&#x7801;&#x5F7C;&#x6B64;&#x72EC;&#x7ACB;&#xFF0C;&#x677E;&#x8026;&#x5408;</li>
+<li>&#x8282;&#x7701;&#x4E86;&#x5185;&#x5B58;</li>
+</ol>
+<h3 id="&#x8BF4;&#x767D;&#x4E86;"><a href="#&#x8BF4;&#x767D;&#x4E86;" class="headerlink" title="&#x8BF4;&#x767D;&#x4E86;"></a>&#x8BF4;&#x767D;&#x4E86;</h3><p>&#x5C31;&#x662F;&#x4E0D;&#x5230;&#x9A6C;&#x4E0A;&#x8981;&#x7528;&#x7684;&#x65F6;&#x5019;&#x4E0D;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x4E0D;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x5BF9;&#x8C61;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x4E5F;&#x5C31;&#x4E0D;&#x4F1A;&#x5360;&#x7528;&#x8D44;&#x6E90;&#x3002;</p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2017-05-06T15:43:00.000Z" itemprop="datePublished">2017-05-06</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2017/06/07/苹果官方文档翻译-The-Role-of-View-Controllers/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    苹果官方文档翻译 - The Role of View Controllers
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2017/04/23/代码实现-HOME-键效果/" class="ui tiny button">
+                    
+                    代码实现 HOME 键效果
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#什么是懒加载"><span>什么是懒加载</span></a></li><li><a href="#特点"><span>特点</span></a></li><li><a href="#好处"><span>好处</span></a></li><li><a href="#说白了"><span>说白了</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

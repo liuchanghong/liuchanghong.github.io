@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>当年纳闷：iOS 中 property 与成员变量、实例变量 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="到底什么是成员变量，什么是实例变量？123456@interface MyClass : NSObject&amp;#123;	int count;	id data;	NSString *name;&amp;#125;">
+<meta name="keywords" content="iOS,objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当年纳闷：iOS 中 property 与成员变量、实例变量">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/02/24/当年的坑-之-iOS-中-property-与成员变量/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="到底什么是成员变量，什么是实例变量？123456@interface MyClass : NSObject&amp;#123;	int count;	id data;	NSString *name;&amp;#125;">
+<meta property="og:updated_time" content="2017-04-02T06:23:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当年纳闷：iOS 中 property 与成员变量、实例变量">
+<meta name="twitter:description" content="到底什么是成员变量，什么是实例变量？123456@interface MyClass : NSObject&amp;#123;	int count;	id data;	NSString *name;&amp;#125;">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-当年的坑-之-iOS-中-property-与成员变量" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    当年纳闷：iOS 中 property 与成员变量、实例变量
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h2 id="&#x5230;&#x5E95;&#x4EC0;&#x4E48;&#x662F;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x4EC0;&#x4E48;&#x662F;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF1F;"><a href="#&#x5230;&#x5E95;&#x4EC0;&#x4E48;&#x662F;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x4EC0;&#x4E48;&#x662F;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF1F;" class="headerlink" title="&#x5230;&#x5E95;&#x4EC0;&#x4E48;&#x662F;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x4EC0;&#x4E48;&#x662F;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF1F;"></a>&#x5230;&#x5E95;&#x4EC0;&#x4E48;&#x662F;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x4EC0;&#x4E48;&#x662F;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF1F;</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyClass</span> : <span class="title">NSObject</span></span></div><div class="line">{</div><div class="line">	<span class="keyword">int</span> count;</div><div class="line">	<span class="keyword">id</span> data;</div><div class="line">	<span class="built_in">NSString</span> *name;</div><div class="line">}</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>&#x4EE5;&#x4E0A;&#x4EE3;&#x7801; { } &#x4E2D;&#x7684;&#x90FD;&#x5E94;&#x8BE5;&#x79F0;&#x4E3A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x90A3;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x53C8;&#x662F;&#x4EC0;&#x4E48;&#x9B3C;&#xFF1F;&#x5148;&#x770B;&#x82F1;&#x6587;&#x89E3;&#x91CA;&#xFF1A;</p>
+<p><em>&#x5B9E;&#x4F8B;&#xFF1A; Instance (manifestation of a class)</em></p>
+<p><em>&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF1A; Instance Variable (object-specific storage)</em></p>
+<p>&#x5B9E;&#x4F8B;&#xFF08;instance&#xFF09;&#x662F;&#x9488;&#x5BF9;&#x7C7B;&#xFF08;class&#xFF09;&#x800C;&#x8A00;&#x7684;&#xFF0C;&#x5B9E;&#x4F8B;&#x662F;&#x6307;&#x7C7B;&#x7684;&#x58F0;&#x660E;&#xFF1B;&#x7531;&#x6B64;&#x63A8;&#x7406;&#xFF0C;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF08;instance variable&#xFF09;&#x662F;&#x7531;&#x7C7B;&#x58F0;&#x660E;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x6240;&#x4EE5;&#x4E25;&#x683C;&#x6765;&#x8BF4;&#xFF0C;&#x1F446; &#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x4E2D;&#x7684; int count &#x662F;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF1B;</p>
+<p>&#x800C; NSString *name &#x662F;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF08;&#x56E0;&#x4E3A; NSString &#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#xFF09;&#xFF1B;</p>
+<p>&#x90A3;&#x4E48; id data &#x5462;&#xFF1F;&#x56E0;&#x4E3A; id &#x662F; OC &#x7279;&#x6709;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x4ECE;&#x672C;&#x8D28;&#x4E0A;&#x8BB2; id &#x7B49;&#x540C;&#x4E8E; (void *)&#xFF0C;&#x6240;&#x4EE5; id data &#x5C5E;&#x4E8E;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x3002;</p>
+<h2 id="class-&#x4E2D;&#x7684;-propery"><a href="#class-&#x4E2D;&#x7684;-propery" class="headerlink" title="class &#x4E2D;&#x7684; propery"></a>class &#x4E2D;&#x7684; propery</h2><p>&#x5728;&#x4E0A;&#x53E4;&#x65F6;&#x671F;&#x7684; iOS &#x4E2D;&#xFF0C;&#x653B;&#x57CE;&#x72EE;&#x4EEC;&#x9700;&#x8981;&#x4E3A;&#x8F93;&#x51FA;&#x53E3;&#x540C;&#x65F6;&#x58F0;&#x660E;&#x5C5E;&#x6027;&#x548C;&#x5E95;&#x5C42;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x3002;&#x90A3;&#x4E2A;&#x6DF7;&#x6C8C;&#x7684;&#x5E74;&#x4EE3;&#xFF0C;&#x5C5E;&#x6027;&#x8FD8;&#x662F; OC &#x8BED;&#x8A00;&#x7684;&#x4E00;&#x4E2A;&#x65B0;&#x673A;&#x5236;&#xFF0C;OC &#x8981;&#x6C42;&#x4F60;&#x5FC5;&#x987B;&#x58F0;&#x660E;&#x4E0E;&#x4E4B;&#x5BF9;&#x5E94;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyViewController</span> :<span class="title">UIViewController</span></span></div><div class="line">{</div><div class="line"><span class="built_in">UIButton</span> *myButton;</div><div class="line">}</div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="built_in">UIButton</span> *myButton;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x540E;&#x6765;&#xFF0C;&#x82F9;&#x679C;&#x5C31;&#x9ED8;&#x8BA4;&#x7F16;&#x8BD1;&#x5668;&#x4ECE; GCC &#x8F6C;&#x6362;&#x4E3A; LLVM &#x4E86;&#xFF0C;&#x4ECE;&#x6B64;&#x6211;&#x4EEC;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x4E3A;&#x5C5E;&#x6027;&#x58F0;&#x660E;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x4E86;&#x3002;&#x5982;&#x679C; LLVM &#x53D1;&#x73B0;&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x5339;&#x914D;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x5B83;&#x5C06;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4EE5;&#x4E0B;&#x5212;&#x7EBF;&#x5F00;&#x5934;&#xFF08;&#x5982; _myButton&#xFF09;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x653E;&#x5FC3;&#x5730;&#x53EA;&#x8FD9;&#x4E48;&#x5199;&#x4E86;&#xFF1A;</p>
+<p>MyViewController.h</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyViewController</span> :<span class="title">UIViewController</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="built_in">UIButton</span> *myButton;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>MyViewController.m &#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x7F16;&#x8BD1;&#x5668;&#x4E5F;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF; _myButton&#x3002;&#x5728; .m &#x6587;&#x4EF6;&#x4E2D;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528; _myButton&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; self.myButton&#xFF0C;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x91CC;&#x7684; self.mybutton &#x5176;&#x5B9E;&#x662F;&#x8C03;&#x7528;&#x7684; myButton&#x5C5E;&#x6027;&#x7684; getter/setter &#x65B9;&#x6CD5;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#xFF0C;&#x800C;&#x662F;&#x53EA;&#x6709;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF0C;&#x662F;&#x4E0D;&#x80FD;&#x901A;&#x8FC7;&#x70B9;&#x8BED;&#x6CD5;&#x8BBF;&#x95EE;&#x7684;&#x3002;</strong></p>
+<p>&#x4F8B;&#x5982;&#xFF1A;</p>
+<p>.h &#x6587;&#x4EF6;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyViewController</span> :<span class="title">UIViewController</span></span></div><div class="line">{</div><div class="line"><span class="built_in">NSString</span> *name;</div><div class="line">}</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>.m &#x6587;&#x4EF6;&#x4E2D;&#xFF0C;self.name &#x8FD9;&#x6837;&#x7684;&#x8868;&#x8FBE;&#x5F0F;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x3002;Xcode &#x4F1A;&#x63D0;&#x793A;&#x4F60;&#x4F7F;&#x7528; -&gt; &#xFF0C;&#x6539;&#x6210; self -&gt; name &#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;OC &#x4E2D;&#x7684;&#x70B9;&#x8868;&#x793A;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x800C;&#x4E0A;&#x9762;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF; name &#x5E76;&#x6CA1;&#x6709; name &#x8FD9;&#x4E2A; getter &#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x6709;&#x5FC5;&#x8981;&#x8BF4;&#x660E;&#x4E00;&#x4E0B; <strong>OC &#x4E2D;&#x7684;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;</strong>&#xFF1A;&#x5982;&#x679C;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;&#x51FA;&#x73B0;&#x5728;&#x7B49;&#x53F7;&#x5DE6;&#x8FB9;&#xFF0C;&#x8BE5;&#x5C5E;&#x6027;&#x540D;&#x79F0;&#x7684; setter &#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x51FA;&#x73B0;&#x5728;&#x53F3;&#x8FB9;&#xFF0C;&#x8BE5;&#x5C5E;&#x6027;&#x540D;&#x79F0;&#x7684; getter &#x65B9;&#x6CD5;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x6240;&#x4EE5;&#x5728; OC &#x4E2D;&#x70B9;&#x8868;&#x8FBE;&#x5F0F;&#x5176;&#x5B9E;&#x662F;&#x4E00;&#x79CD;&#x8BED;&#x6CD5;&#x7CD6;&#xFF0C;dog.age = 2 &#x5B8C;&#x5168;&#x7B49;&#x4EF7;&#x4E8E; [dog setAge:2]&#x3002;</p>
+<p>&#x5F53;&#x8FD9;&#x6837;&#x5199;&#x7684;&#x65F6;&#x5019;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyViewController</span> :<span class="title">UIViewController</span></span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">retain</span>) <span class="built_in">UIButton</span> *myButton;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF; _myButton&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x624B;&#x52A8;&#x518D;&#x53BB;&#x5199;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF0C;&#x800C;&#x4E14;&#x4E0D;&#x9700;&#x8981;&#x5728; .m &#x6587;&#x4EF6;&#x4E2D;&#x5199; @synthesize mybutton &#x4E5F;&#x4F1A;&#x4E3A;&#x4F60;&#x81EA;&#x52A8;&#x751F;&#x6210; getter/setter &#x65B9;&#x6CD5;&#x3002;</p>
+<p>@synthesize &#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x8BA9;&#x7F16;&#x8BD1;&#x5668;&#x4E3A;&#x4F60;&#x81EA;&#x52A8;&#x751F;&#x6210; getter/setter &#x65B9;&#x6CD5;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8FD9;&#x4E48;&#x5199;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Dog</span></span></div><div class="line"><span class="keyword">@synthesize</span> age;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210; age &#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x4EE5;&#x53CA;&#x76F8;&#x5E94;&#x7684; getter/setter &#x65B9;&#x6CD5;&#xFF0C;&#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x65F6;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;&#x4E3A; age &#x800C;&#x4E0D;&#x662F; _age&#x3002;&#x6240;&#x4EE5; @synthesize age &#x7B49;&#x540C;&#x4E8E; @synthesize age = age&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8FD9;&#x4E48;&#x5199;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Dog</span> ()</span></div><div class="line">{</div><div class="line"><span class="keyword">int</span> myAge;</div><div class="line">}</div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Dog</span></span></div><div class="line"><span class="keyword">@synthesize</span> age = myAge;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x90A3;&#x4E48; self.age &#x64CD;&#x4F5C;&#x7684;&#x662F;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF; myAge&#xFF0C;&#x4E0D;&#x662F; age &#x4E5F;&#x4E0D;&#x662F; _age&#x3002;</p>
+<h2 id="category-&#x4E2D;&#x7684;-property"><a href="#category-&#x4E2D;&#x7684;-property" class="headerlink" title="category &#x4E2D;&#x7684; property"></a>category &#x4E2D;&#x7684; property</h2><p>category &#x4E0E; class &#x4E2D;&#x6DFB;&#x52A0;&#x7684;&#x5C5E;&#x6027;&#x8981;&#x533A;&#x5206;&#x5F00;&#x6765;&#xFF0C;&#x56E0;&#x4E3A;&#x7C7B;&#x522B;&#x4E2D;&#x53EA;&#x80FD;&#x6DFB;&#x52A0;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x80FD;&#x6DFB;&#x52A0;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x3002;&#x6709;&#x65F6;&#x5019;&#x80FD;&#x770B;&#x5230;&#x6709;&#x7684;&#x4EE3;&#x7801;&#x5728; category &#x4E2D;&#x58F0;&#x660E;&#x5C5E;&#x6027;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#x662F;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x7684;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&quot;Dog.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Dog</span> (<span class="title">DogCategory</span>)</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">copy</span>)<span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x91CC;&#x6DFB;&#x52A0;&#x7684;&#x5C5E;&#x6027; name&#xFF0C;&#x662F;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x7684;&#xFF0C;&#x8FD9;&#x91CC;&#x6DFB;&#x52A0;&#x7684;&#x5C5E;&#x6027;&#x5176;&#x5B9E;&#x662F;&#x6DFB;&#x52A0;&#x7684; getter/setter &#x65B9;&#x6CD5;&#x3002;</p>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;</strong> &#x533F;&#x540D; category&#xFF08;&#x5373; Extension&#xFF09;&#x662F;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x7684;&#xFF0C;&#x975E;&#x533F;&#x540D; category &#x662F;&#x4E0D;&#x80FD;&#x6DFB;&#x52A0;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x7684;&#x3002;</p>
+<p>&#x53C2;&#x8003;&#xFF1A;</p>
+<ol class="ui list">
+<li><a href="http://blog.csdn.net/itianyi/article/details/8618128" target="_blank" rel="external">http://blog.csdn.net/itianyi/article/details/8618128</a></li>
+<li><a href="http://www.cnblogs.com/crazypebble/archive/2013/11/23/3439261.html" target="_blank" rel="external">http://www.cnblogs.com/crazypebble/archive/2013/11/23/3439261.html</a></li>
+</ol>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-02-24T13:04:28.000Z" itemprop="datePublished">2016-02-24</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/objective-C/">objective-C</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/02/24/当年纳闷：category-到底有什么用/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    当年纳闷：category 到底有什么用
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/02/23/Autolayout-复习整理/" class="ui tiny button">
+                    
+                    Autolayout 复习整理
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#到底什么是成员变量，什么是实例变量？"><span>到底什么是成员变量，什么是实例变量？</span></a></li><li><a href="#class-中的-propery"><span>class 中的 propery</span></a></li><li><a href="#category-中的-property"><span>category 中的 property</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

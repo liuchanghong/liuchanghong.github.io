@@ -1,0 +1,292 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>当年纳闷：category 到底有什么用 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="category 基本有四个作用：  将类的实现分散到多个不同的文件或不同框架中。 对框架提供类的扩展。（因为框架里的类基本没有源码，不能修改） 创建对私有方法的前向引用。 面相对象添加非正式协议。">
+<meta name="keywords" content="iOS,objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当年纳闷：category 到底有什么用">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/02/24/当年纳闷：category-到底有什么用/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="category 基本有四个作用：  将类的实现分散到多个不同的文件或不同框架中。 对框架提供类的扩展。（因为框架里的类基本没有源码，不能修改） 创建对私有方法的前向引用。 面相对象添加非正式协议。">
+<meta property="og:updated_time" content="2017-04-02T06:28:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当年纳闷：category 到底有什么用">
+<meta name="twitter:description" content="category 基本有四个作用：  将类的实现分散到多个不同的文件或不同框架中。 对框架提供类的扩展。（因为框架里的类基本没有源码，不能修改） 创建对私有方法的前向引用。 面相对象添加非正式协议。">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-当年纳闷：category-到底有什么用" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    当年纳闷：category 到底有什么用
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>category &#x57FA;&#x672C;&#x6709;&#x56DB;&#x4E2A;&#x4F5C;&#x7528;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x5C06;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x5206;&#x6563;&#x5230;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x4E0D;&#x540C;&#x6846;&#x67B6;&#x4E2D;&#x3002;</li>
+<li>&#x5BF9;&#x6846;&#x67B6;&#x63D0;&#x4F9B;&#x7C7B;&#x7684;&#x6269;&#x5C55;&#x3002;&#xFF08;&#x56E0;&#x4E3A;&#x6846;&#x67B6;&#x91CC;&#x7684;&#x7C7B;&#x57FA;&#x672C;&#x6CA1;&#x6709;&#x6E90;&#x7801;&#xFF0C;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;&#xFF09;</li>
+<li>&#x521B;&#x5EFA;&#x5BF9;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x7684;&#x524D;&#x5411;&#x5F15;&#x7528;&#x3002;</li>
+<li>&#x9762;&#x76F8;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x3002;</li>
+</ol>
+<a id="more"></a>
+<h4 id="1-&#x5C06;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x5206;&#x6563;&#x5230;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x4E0D;&#x540C;&#x6846;&#x67B6;&#x4E2D;"><a href="#1-&#x5C06;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x5206;&#x6563;&#x5230;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x4E0D;&#x540C;&#x6846;&#x67B6;&#x4E2D;" class="headerlink" title="1. &#x5C06;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x5206;&#x6563;&#x5230;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x4E0D;&#x540C;&#x6846;&#x67B6;&#x4E2D;"></a>1. &#x5C06;&#x7C7B;&#x7684;&#x5B9E;&#x73B0;&#x5206;&#x6563;&#x5230;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x6587;&#x4EF6;&#x6216;&#x4E0D;&#x540C;&#x6846;&#x67B6;&#x4E2D;</h4><p>&#x8FD9;&#x4E2A;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#xFF0C;&#x5229;&#x7528; category &#x53EF;&#x4EE5;&#x5C06;&#x4E00;&#x4E2A;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x7EC4;&#x7EC7;&#x5230;&#x4E0D;&#x540C;&#x7684;&#x903B;&#x8F91;&#x5206;&#x7EC4;&#x4E2D;&#xFF0C;&#x4F7F;&#x7F16;&#x7A0B;&#x4EBA;&#x5458;&#x66F4;&#x52A0;&#x5BB9;&#x6613;&#x5730;&#x9605;&#x8BFB;&#x5934;&#x6587;&#x4EF6;&#x3002;</p>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;</strong></p>
+<ol class="ui list">
+<li>&#x7C7B;&#x522B;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;&#x5176;&#x7EE7;&#x627F;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#xFF0C;&#x7C7B;&#x522B;&#x7684;&#x65B9;&#x6CD5;&#x5177;&#x6709;&#x6700;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x3002;</li>
+<li>&#x7C7B;&#x522B;&#x53EF;&#x4EE5;&#x5206;&#x6563;&#x5230;&#x4E0D;&#x540C;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x5230;&#x4E0D;&#x540C;&#x6846;&#x67B6;&#x4E2D;&#x3002;</li>
+</ol>
+<h4 id="2-&#x5BF9;&#x6846;&#x67B6;&#x63D0;&#x4F9B;&#x7C7B;&#x7684;&#x6269;&#x5C55;"><a href="#2-&#x5BF9;&#x6846;&#x67B6;&#x63D0;&#x4F9B;&#x7C7B;&#x7684;&#x6269;&#x5C55;" class="headerlink" title="2. &#x5BF9;&#x6846;&#x67B6;&#x63D0;&#x4F9B;&#x7C7B;&#x7684;&#x6269;&#x5C55;"></a>2. &#x5BF9;&#x6846;&#x67B6;&#x63D0;&#x4F9B;&#x7C7B;&#x7684;&#x6269;&#x5C55;</h4><p>&#x5728;&#x4E0A;&#x4E00;&#x4F5C;&#x7528;&#x7684;&#x57FA;&#x7840;&#x4E0A;&#xFF0C;&#x7C7B;&#x522B;&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x5BF9;&#x6CA1;&#x6709;&#x6E90;&#x7801;&#x7684;&#x7C7B;&#x8FDB;&#x884C;&#x65B9;&#x6CD5;&#x6269;&#x5C55;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  UIView+UIViewCategory.h</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">UIView</span> (<span class="title">UIViewCategory</span>)</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)logHeightOfTheView;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  UIView+UIViewCategory.m</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;UIView+UIViewCategory.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">UIView</span> (<span class="title">UIViewCategory</span>)</span></div><div class="line"></div><div class="line">-(<span class="keyword">void</span> )logHeightOfTheView{</div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@&quot;height of the view is %f&quot;</span>, <span class="keyword">self</span>.frame.size.height);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x5C31;&#x662F; UIView &#x7C7B;&#x7684;&#x4E00;&#x4E2A; category&#x3002;</p>
+<h4 id="3-&#x521B;&#x5EFA;&#x5BF9;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x7684;&#x524D;&#x5411;&#x5F15;&#x7528;"><a href="#3-&#x521B;&#x5EFA;&#x5BF9;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x7684;&#x524D;&#x5411;&#x5F15;&#x7528;" class="headerlink" title="3. &#x521B;&#x5EFA;&#x5BF9;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x7684;&#x524D;&#x5411;&#x5F15;&#x7528;"></a>3. &#x521B;&#x5EFA;&#x5BF9;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#x7684;&#x524D;&#x5411;&#x5F15;&#x7528;</h4><p>Cocoa &#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x771F;&#x6B63;&#x7684;&#x79C1;&#x6709;&#x65B9;&#x6CD5;&#xFF0C;&#x53EA;&#x8981;&#x77E5;&#x9053;&#x5BF9;&#x8C61;&#x652F;&#x6301;&#x67D0;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x5373;&#x4F7F;&#x8BE5;&#x5BF9;&#x8C61;&#x6240;&#x5728;&#x7684;&#x7C7B;&#x7684;&#x63A5;&#x53E3;&#x4E2D;&#x6CA1;&#x6709;&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x58F0;&#x660E;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x8FC7;&#x8FD9;&#x4E48;&#x505A;&#x7F16;&#x8BD1;&#x5668;&#x4F1A;&#x62A5;&#x9519;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x53EA;&#x8981;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x8BE5;&#x7C7B;&#x7684;&#x7C7B;&#x522B;&#xFF0C;&#x5728;&#x7C7B;&#x522B; .h &#x6587;&#x4EF6;&#x4E2D;&#x5199;&#x4E0A;&#x4F60;&#x60F3;&#x8981;&#x8C03;&#x7528;&#x7684;&#x539F;&#x59CB;&#x7C7B;&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x58F0;&#x660E;&#xFF0C;.m &#x6587;&#x4EF6;&#x4E2D;&#x4EC0;&#x4E48;&#x4E5F;&#x4E0D;&#x5199;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x8C03;&#x7528;&#x8BE5;&#x65B9;&#x6CD5;&#x4E86;&#x3002;</p>
+<h4 id="4-&#x9762;&#x76F8;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;"><a href="#4-&#x9762;&#x76F8;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;" class="headerlink" title="4. &#x9762;&#x76F8;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;"></a>4. &#x9762;&#x76F8;&#x5BF9;&#x8C61;&#x6DFB;&#x52A0;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;</h4><p><strong>&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#xFF1A;</strong>&#x51E1;&#x662F; NSObject &#x6216;&#x5176;&#x5B50;&#x7C7B;&#x7684; category&#xFF0C;&#x90FD;&#x662F;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x3002;</p>
+<p>&#x81F3;&#x4E8E;&#x975E;&#x6B63;&#x5F0F;&#x534F;&#x8BAE;&#x6709;&#x4EC0;&#x4E48;&#x7528;&#xFF0C;&#x6211;&#x51B3;&#x5B9A;&#x53E6;&#x5199;&#x4E00;&#x7BC7;&#x3002;</p>
+<h2 id="category-&#x7684;&#x7F3A;&#x70B9;"><a href="#category-&#x7684;&#x7F3A;&#x70B9;" class="headerlink" title="category &#x7684;&#x7F3A;&#x70B9;"></a>category &#x7684;&#x7F3A;&#x70B9;</h2><ol class="ui list">
+<li>&#x53EA;&#x80FD;&#x6DFB;&#x52A0;&#x65B9;&#x6CD5;&#xFF0C;&#x4E0D;&#x80FD;&#x6DFB;&#x52A0;&#x5B9E;&#x4F8B;&#x53D8;&#x91CF;&#x3002;</li>
+<li>&#x5982;&#x679C; category &#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x540D;&#x548C;&#x539F;&#x6765;&#x7C7B;&#x4E2D;&#x7684;&#x76F8;&#x540C;&#xFF0C;&#x5219;&#x8986;&#x76D6;&#x539F;&#x6765;&#x7C7B;&#x4E2D;&#x7684;&#x65B9;&#x6CD5;&#x3002;</li>
+</ol>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-02-24T14:03:42.000Z" itemprop="datePublished">2016-02-24</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/objective-C/">objective-C</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/02/26/当年纳闷：Extension-到底有什么用/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    当年纳闷：Extension 到底有什么用
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/02/24/当年的坑-之-iOS-中-property-与成员变量/" class="ui tiny button">
+                    
+                    当年纳闷：iOS 中 property 与成员变量、实例变量
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#1-将类的实现分散到多个不同的文件或不同框架中"><span>1. 将类的实现分散到多个不同的文件或不同框架中</span></a></li><li><a href="#2-对框架提供类的扩展"><span>2. 对框架提供类的扩展</span></a></li><li><a href="#3-创建对私有方法的前向引用"><span>3. 创建对私有方法的前向引用</span></a></li><li><a href="#4-面相对象添加非正式协议"><span>4. 面相对象添加非正式协议</span></a></li></ol></li></ol></li><li><a href="#category-的缺点"><span>category 的缺点</span></a>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

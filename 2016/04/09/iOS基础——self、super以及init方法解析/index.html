@@ -1,0 +1,302 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>iOS基础复习——self、super以及init方法解析 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="12345678- (instancetype)init&amp;#123;    self = [super init];    if (self) &amp;#123;            &amp;#125;    return self;&amp;#125;  self 和 super 是什么？ [super init]做了什么？ 为什么要把 [super init] 赋值给 self ？ 我们经常用 alloc in">
+<meta name="keywords" content="iOS,基础复习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS基础复习——self、super以及init方法解析">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/04/09/iOS基础——self、super以及init方法解析/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="12345678- (instancetype)init&amp;#123;    self = [super init];    if (self) &amp;#123;            &amp;#125;    return self;&amp;#125;  self 和 super 是什么？ [super init]做了什么？ 为什么要把 [super init] 赋值给 self ？ 我们经常用 alloc in">
+<meta property="og:updated_time" content="2017-04-09T09:39:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS基础复习——self、super以及init方法解析">
+<meta name="twitter:description" content="12345678- (instancetype)init&amp;#123;    self = [super init];    if (self) &amp;#123;            &amp;#125;    return self;&amp;#125;  self 和 super 是什么？ [super init]做了什么？ 为什么要把 [super init] 赋值给 self ？ 我们经常用 alloc in">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-iOS基础——self、super以及init方法解析" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    iOS基础复习——self、super以及init方法解析
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">instancetype</span>)init</div><div class="line">{</div><div class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>) {</div><div class="line">        </div><div class="line">    }</div><div class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</div><div class="line">}</div></pre></td></tr></table></figure>
+<ol class="ui list">
+<li>self &#x548C; super &#x662F;&#x4EC0;&#x4E48;&#xFF1F;</li>
+<li>[super init]&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#xFF1F;</li>
+<li>&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x628A; [super init] &#x8D4B;&#x503C;&#x7ED9; self &#xFF1F;</li>
+<li>&#x6211;&#x4EEC;&#x7ECF;&#x5E38;&#x7528; alloc init &#x7684;&#x4E24;&#x6B65;&#x521B;&#x5EFA;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x662F; [[super alloc] init] &#xFF1F;<a id="more"></a>
+###&#x95EE;&#x9898; 1 &#x89E3;&#x6790;&#xFF1A;</li>
+</ol>
+<p>self &#x662F;&#x4E00;&#x4E2A;<strong>&#x9690;&#x85CF;&#x53C2;&#x6570;</strong>&#xFF0C;&#x6307;&#x5411;&#x5F53;&#x524D;&#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>super &#x5E76;&#x4E0D;&#x662F;&#x9690;&#x85CF;&#x53C2;&#x6570;&#xFF0C;&#x53EA;&#x662F;<strong>&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x6307;&#x4EE4;&#x7B26;&#x53F7;</strong>&#x3002;</p>
+<p>#####&#x5B98;&#x65B9;&#x6587;&#x6863;&#x4E2D; self &#x76F8;&#x5173;&#x89E3;&#x91CA;</p>
+<p>Whenever you&#x2019;re writing a method implementation, you have access to an important hidden value, self. Conceptually, self is a way to refer to <strong>&#x201C;the object that&#x2019;s received this message.&#x201D;</strong> It&#x2019;s apointer, just like the greeting value above, and can be used to call a method on the current receiving object.</p>
+<p>#####super&#x89E3;&#x91CA;</p>
+<p>There&#x2019;s another important keyword available to you in Objective-C, called super. Sending a message to super is a way to call through to a method implementation defined by a superclass further up the inheritance chain. The most common use of super is when overriding a method.</p>
+<p>self &#x8C03;&#x7528;&#x81EA;&#x5DF1;&#x65B9;&#x6CD5;&#xFF0C;super &#x8C03;&#x7528;&#x7236;&#x7C7B;&#x65B9;&#x6CD5;<br>self &#x662F;&#x7C7B;&#xFF0C;super &#x662F;&#x9884;&#x7F16;&#x8BD1;&#x6307;&#x4EE4;<br>[self class] &#x548C;[super class] &#x8F93;&#x51FA;&#x662F;&#x4E00;&#x6837;&#x7684;</p>
+<p>###&#x95EE;&#x9898; 2 &#x548C;&#x95EE;&#x9898; 3 &#x89E3;&#x6790;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x5F53;&#x4F7F;&#x7528; self &#x8C03;&#x7528;&#x65B9;&#x6CD5;&#x65F6;&#xFF0C;&#x4F1A;&#x9996;&#x5148;&#x4ECE;&#x5F53;&#x524D;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x4E2D;&#x5F00;&#x59CB;&#x5BFB;&#x627E;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x518D;&#x4ECE;&#x7236;&#x7C7B;&#x4E2D;&#x5BFB;&#x627E;&#xFF1B;</li>
+<li>&#x5F53;&#x4F7F;&#x7528; super &#x65F6;&#xFF0C;&#x5219;&#x4ECE;&#x7236;&#x7C7B;&#x7684;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x4E2D;&#x5F00;&#x59CB;&#x627E;&#xFF0C;&#x7136;&#x540E;&#x8C03;&#x7528;&#x7236;&#x7C7B;&#x7684;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x3002;</li>
+</ol>
+<p>[super init] &#x7684;&#x7ED3;&#x679C;&#x53EF;&#x80FD;&#x6709;&#x4E09;&#x79CD;&#xFF1A;</p>
+<p>&#x7B2C;&#x4E00;&#x79CD;: [super init] &#x521D;&#x59CB;&#x5316;&#x6210;&#x529F;&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;&#x6700;&#x6700;&#x6B63;&#x5E38;&#x7684;&#x60C5;&#x51B5;&#x3002;</p>
+<p>&#x7B2C;&#x4E8C;&#x79CD;: [super init] &#x521D;&#x59CB;&#x5316;&#x5931;&#x8D25;&#xFF0C;&#x6211;&#x4EEC;&#x90FD;&#x77E5;&#x9053;oc&#x7684;&#x4E24;&#x6B65;&#x521B;&#x5EFA;&#xFF0C;<br>alloc&#x5F00;&#x8F9F;&#x5185;&#x5B58;&#x7A7A;&#x95F4;&#xFF0C;<br>init&#x521D;&#x59CB;&#x5316;&#x5BF9;&#x8C61;&#xFF0C;&#x4F46;&#x662F;init&#x8FD8;&#x6709;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x4F5C;&#x7528;&#xFF0C;&#x5728;&#x521D;&#x59CB;&#x5316;&#x5931;&#x8D25;&#x7684;&#x65F6;&#x5019;&#xFF0C;<br>init&#x65B9;&#x6CD5;&#x4F1A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;nil&#x3002;&#x56DE;&#x5934;&#x884C;&#x6587;&#x7684;&#x6700;&#x4E0A;&#x9762;&#xFF0C;&#x5982;&#x679C;self&#x4E3A;nil&#xFF0C;<br>&#x90A3;&#x4E48;if(self)&#x8BED;&#x53E5;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x5C06;&#x4E0D;&#x88AB;&#x6267;&#x884C;&#xFF0C;&#x5DF2;&#x786E;&#x4FDD;&#x7A0B;&#x5E8F;&#x5065;&#x58EE;&#x5B89;&#x5168;&#x3002;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (instancetype)init</div><div class="line">{</div><div class="line">    self = [super init]; // call the designated initializer</div><div class="line">    if (self) {</div><div class="line">        // Custom initialization</div><div class="line">    }</div><div class="line">    return self;</div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x7B2C;&#x4E09;&#x79CD;: self = [super init] &#x6267;&#x884C;&#x4E4B;&#x540E;&#xFF0C;&#x5185;&#x5B58;&#x6307;&#x5411;&#x4E86;&#x4E0D;&#x76F8;&#x5173;&#x7684;&#x5730;&#x5740;&#x3002;<br>&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x7684;&#x51FA;&#x73B0;&#xFF0C;&#x4E00;&#x822C;&#x662F;&#x4E00;&#x4E0B;&#x51E0;&#x79CD;&#x60C5;&#x51B5;:&#x5355;&#x4F8B;&#x3001;&#x7C7B;&#x7C07;&#x3001;&#x5BF9;&#x8C61;&#x4E3A;NSNumber&#x7C7B;&#x578B;&#x3001;<br>&#x7236;&#x7C7B;&#x5728;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x5019;&#x91CA;&#x653E;&#x4E86;&#x5F53;&#x524D;&#x5BF9;&#x8C61;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x65B0;&#x5F00;&#x8F9F;&#x4E86;&#x65B0;&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#x3002;</p>
+<p>if( self = [super init] )&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x901A;&#x5E38;&#x7684;&#x5EFA;&#x8BAE;&#x5199;&#x6CD5;&#xFF0C;&#x8D4B;&#x503C;&#x5E76;&#x6D4B;&#x8BD5; nil &#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x8D85;&#x7C7B;&#x5728;&#x521D;&#x59CB;&#x5316;&#x8FC7;&#x7A0B;&#x4E2D;&#x53D1;&#x751F;&#x6539;&#x53D8;&#xFF0C;&#x8FD4;&#x56DE;&#x4E86;&#x4E0D;&#x540C;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>###&#x95EE;&#x9898; 4 &#x89E3;&#x6790;&#xFF1A;</p>
+<p>alloc&#x65B9;&#x6CD5;&#x662F;&#x8FD9;&#x4E48;&#x5B9A;&#x4E49;&#x7684; &#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+ (instancetype)alloc;</div></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230; alloc &#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#x65B9;&#x6CD5;,&#x800C; super &#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x7C7B;&#x3002;</p>
+<p>###&#x53C2;&#x8003;</p>
+<ul class="ui list">
+<li><a href="http://www.jianshu.com/p/4c9112f8625d" target="_blank" rel="external">http://www.jianshu.com/p/4c9112f8625d</a></li>
+<li><a href="http://www.jianshu.com/p/15fa5e84c897" target="_blank" rel="external">http://www.jianshu.com/p/15fa5e84c897</a></li>
+</ul>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-04-09T11:36:51.000Z" itemprop="datePublished">2016-04-09</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/基础复习/">基础复习</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/05/23/OC-对象初始化/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    OC 对象初始化
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/03/07/当年纳闷-——-KVC-KVO/" class="ui tiny button">
+                    
+                    当年纳闷 —— KVC &amp; KVO
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>Autolayout 复习整理 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="Autolayout 是一种自动布局技术，专门用来布局 UI 界面，主要用来解决 Frame 布局在多尺寸屏幕中表现出的不足。 说白了 Autolayout 就是用来搞『屏幕适配』的。">
+<meta name="keywords" content="iOS,Autolayout">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autolayout 复习整理">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/02/23/Autolayout-复习整理/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="Autolayout 是一种自动布局技术，专门用来布局 UI 界面，主要用来解决 Frame 布局在多尺寸屏幕中表现出的不足。 说白了 Autolayout 就是用来搞『屏幕适配』的。">
+<meta property="og:image" content="https://liuchanghong.github.io/images/autolayout20170224.png">
+<meta property="og:updated_time" content="2017-04-02T06:26:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Autolayout 复习整理">
+<meta name="twitter:description" content="Autolayout 是一种自动布局技术，专门用来布局 UI 界面，主要用来解决 Frame 布局在多尺寸屏幕中表现出的不足。 说白了 Autolayout 就是用来搞『屏幕适配』的。">
+<meta name="twitter:image" content="https://liuchanghong.github.io/images/autolayout20170224.png">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-Autolayout-复习整理" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    Autolayout 复习整理
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>Autolayout &#x662F;&#x4E00;&#x79CD;&#x81EA;&#x52A8;&#x5E03;&#x5C40;&#x6280;&#x672F;&#xFF0C;&#x4E13;&#x95E8;&#x7528;&#x6765;&#x5E03;&#x5C40; UI &#x754C;&#x9762;&#xFF0C;&#x4E3B;&#x8981;&#x7528;&#x6765;&#x89E3;&#x51B3; Frame &#x5E03;&#x5C40;&#x5728;&#x591A;&#x5C3A;&#x5BF8;&#x5C4F;&#x5E55;&#x4E2D;&#x8868;&#x73B0;&#x51FA;&#x7684;&#x4E0D;&#x8DB3;&#x3002;</p>
+<p>&#x8BF4;&#x767D;&#x4E86; Autolayout &#x5C31;&#x662F;&#x7528;&#x6765;&#x641E;&#x300E;&#x5C4F;&#x5E55;&#x9002;&#x914D;&#x300F;&#x7684;&#x3002;</p>
+<a id="more"></a>
+<p>Autolayout &#x6709;&#x4E24;&#x4E2A;&#x6838;&#x5FC3;&#x6982;&#x5FF5;</p>
+<ol class="ui list">
+<li>&#x53C2;&#x7167;</li>
+<li>&#x7EA6;&#x675F;</li>
+</ol>
+<p>&#x4EE3;&#x7801;&#x5B9E;&#x73B0; Autolayout &#x4E3B;&#x8981;&#x6709;&#x4E24;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x5229;&#x7528; NSLayoutConstrain &#x7C7B;&#x521B;&#x5EFA;&#x5177;&#x4F53;&#x7684;&#x7EA6;&#x675F;&#x5BF9;&#x8C61;</li>
+<li>&#x6DFB;&#x52A0;&#x7EA6;&#x675F;&#x5BF9;&#x8C61;&#x5230;&#x76F8;&#x5E94;&#x7684; view &#x4E0A;</li>
+</ol>
+<h2 id="&#x4EE3;&#x7801;&#x5B9E;&#x4F8B;"><a href="#&#x4EE3;&#x7801;&#x5B9E;&#x4F8B;" class="headerlink" title="&#x4EE3;&#x7801;&#x5B9E;&#x4F8B;"></a>&#x4EE3;&#x7801;&#x5B9E;&#x4F8B;</h2><ul class="ui list">
+<li>&#x8BA9;&#x4E00;&#x4E2A;&#x84DD;&#x8272;&#x7684; button &#x5BBD;&#x9AD8; 40 &#x4E14;&#x4E0A;&#x4E0B;&#x5DE6;&#x53F3;&#x90FD;&#x5C45;&#x4E2D;</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">UIButton</span> *button = [[<span class="built_in">UIButton</span> alloc] init];</div><div class="line">button.backgroundColor = [<span class="built_in">UIColor</span> blueColor];</div><div class="line">button.translatesAutoresizingMaskIntoConstraints = <span class="literal">NO</span>;</div><div class="line">[<span class="keyword">self</span>.view addSubview:button];</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutConstraint</span> *buttonHeight = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:button attribute:<span class="built_in">NSLayoutAttributeHeight</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">40</span>];</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutConstraint</span> *buttonWidth = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:button attribute:<span class="built_in">NSLayoutAttributeWidth</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="literal">nil</span> attribute:<span class="built_in">NSLayoutAttributeNotAnAttribute</span> multiplier:<span class="number">1.0</span> constant:<span class="number">40</span>];</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutConstraint</span> *buttonCenterX = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:button attribute:<span class="built_in">NSLayoutAttributeCenterX</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="keyword">self</span>.view attribute:<span class="built_in">NSLayoutAttributeCenterX</span> multiplier:<span class="number">1</span> constant:<span class="number">0</span>];</div><div class="line"></div><div class="line"><span class="built_in">NSLayoutConstraint</span> *buttonCenterY = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:button attribute:<span class="built_in">NSLayoutAttributeCenterY</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:button.superview attribute:<span class="built_in">NSLayoutAttributeCenterY</span> multiplier:<span class="number">1.0</span> constant:<span class="number">0</span>];</div><div class="line"></div><div class="line"></div><div class="line"><span class="built_in">NSLayoutConstraint</span> *buttonToTop = [<span class="built_in">NSLayoutConstraint</span> constraintWithItem:button attribute:<span class="built_in">NSLayoutAttributeTop</span> relatedBy:<span class="built_in">NSLayoutRelationEqual</span> toItem:<span class="keyword">self</span>.view attribute:<span class="built_in">NSLayoutAttributeTop</span> multiplier:<span class="number">1.0</span> constant:<span class="number">40</span>];</div><div class="line"></div><div class="line">[button addConstraint:buttonHeight];</div><div class="line">[button addConstraint:buttonWidth];</div><div class="line">[<span class="keyword">self</span>.view addConstraint:buttonCenterX];</div><div class="line">[<span class="keyword">self</span>.view addConstraint:buttonCenterY];</div></pre></td></tr></table></figure>
+<p>&#x8FD0;&#x884C;&#x7ED3;&#x679C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><a class="magnific-img" href="/images/autolayout20170224.png"><img src="/images/autolayout20170224.png" alt="" class="ui centered image"></a></p>
+<ul class="ui list">
+<li>&#x5176;&#x4E2D;&#x7684;&#x5751;</li>
+</ul>
+<p>&#x5728;&#x6211;&#x7B2C;&#x4E00;&#x6B21;&#x7528;&#x4EE3;&#x7801;&#x6572; Autolayout &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x628A;&#x6700;&#x540E;&#x6DFB;&#x52A0;&#x7EA6;&#x675F;&#x7684;&#x90E8;&#x5206;&#x5199;&#x6210;&#x4E86;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[button addConstraint:buttonHeight];</div><div class="line">[button addConstraint:buttonWidth];</div><div class="line">[button addConstraint:buttonCenterX];</div><div class="line">[button addConstraint:buttonCenterY];</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x6837;&#x662F;&#x4E0D;&#x5BF9;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x5BBD;&#x9AD8;&#x7684;&#x7EA6;&#x675F;&#x53EF;&#x4EE5;&#x8BF4;&#x662F;&#x76F8;&#x5BF9;&#x4E8E; button &#x81EA;&#x8EAB;&#x7684;&#x7EA6;&#x675F;&#xFF0C;&#x6240;&#x4EE5;&#x7528; </p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[button addConstraint:buttonHeight] </div><div class="line">[button addConstraint:buttonWidth];</div></pre></td></tr></table></figure>
+<p>&#x4F46;&#x662F;&#x5C45;&#x4E2D;&#x7EA6;&#x675F;&#x662F;&#x76F8;&#x5BF9;&#x4E8E;&#x7236; view &#x6765;&#x8BB2;&#x7684;&#xFF0C;&#x5E94;&#x8BE5;&#x628A;&#x7EA6;&#x675F;&#x6DFB;&#x52A0;&#x5230;&#x7236; view &#x4E0A;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[<span class="keyword">self</span>.view addConstraint:buttonCenterX];</div><div class="line">[<span class="keyword">self</span>.view addConstraint:buttonCenterY];</div></pre></td></tr></table></figure>
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-02-23T14:40:59.000Z" itemprop="datePublished">2016-02-23</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/Autolayout/">Autolayout</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/02/24/当年的坑-之-iOS-中-property-与成员变量/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    当年纳闷：iOS 中 property 与成员变量、实例变量
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/02/09/关于运算符优先级/" class="ui tiny button">
+                    
+                    关于运算符优先级
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#代码实例"><span>代码实例</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

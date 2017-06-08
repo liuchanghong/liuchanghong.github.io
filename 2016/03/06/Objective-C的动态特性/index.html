@@ -1,0 +1,261 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>Objective-C的动态特性 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="OC 基本的动态特性有：  动态类型（Dynamic typing） 动态绑定（Dynamic binding） 动态加载（Dynamic loading）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C的动态特性">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/03/06/Objective-C的动态特性/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="OC 基本的动态特性有：  动态类型（Dynamic typing） 动态绑定（Dynamic binding） 动态加载（Dynamic loading）">
+<meta property="og:updated_time" content="2017-04-06T07:20:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Objective-C的动态特性">
+<meta name="twitter:description" content="OC 基本的动态特性有：  动态类型（Dynamic typing） 动态绑定（Dynamic binding） 动态加载（Dynamic loading）">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-Objective-C的动态特性" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    Objective-C的动态特性
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <p>OC &#x57FA;&#x672C;&#x7684;&#x52A8;&#x6001;&#x7279;&#x6027;&#x6709;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x52A8;&#x6001;&#x7C7B;&#x578B;&#xFF08;Dynamic typing&#xFF09;</li>
+<li>&#x52A8;&#x6001;&#x7ED1;&#x5B9A;&#xFF08;Dynamic binding&#xFF09;</li>
+<li>&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#xFF08;Dynamic loading&#xFF09;</li>
+</ol>
+<a id="more"></a>
+<h3 id="1-&#x52A8;&#x6001;&#x7C7B;&#x578B;"><a href="#1-&#x52A8;&#x6001;&#x7C7B;&#x578B;" class="headerlink" title="1. &#x52A8;&#x6001;&#x7C7B;&#x578B;"></a>1. &#x52A8;&#x6001;&#x7C7B;&#x578B;</h3><p>&#x5373;&#x8FD0;&#x884C;&#x65F6;&#x518D;&#x51B3;&#x5B9A;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x7B80;&#x5355;&#x8BF4;&#x5C31;&#x662F; id &#x7C7B;&#x578B;&#x3002;&#x5728;&#x5B9E;&#x9645;&#x4F7F;&#x7528;&#x4E2D;&#xFF0C;&#x5F80;&#x5F80;&#x4F7F;&#x7528; introspection&#xFF08;&#x5185;&#x7701;&#x6CD5;&#xFF09;&#x6765;&#x786E;&#x5B9A;&#x8BE5;&#x5BF9;&#x8C61;&#x7684;&#x5B9E;&#x9645;&#x6240;&#x5C5E;&#x7C7B;&#xFF1A;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">id obj = someInstance;</div><div class="line">if ([obj isKindOfClass:someClass])</div><div class="line">{</div><div class="line">    someClass *classSpecifiedInstance = (someClass *)obj;</div><div class="line">    // Do Something to classSpecifiedInstance which now is an instance of someClass</div><div class="line">    //...</div><div class="line">}</div></pre></td></tr></table></figure>
+<p><em>-isMemberOfClass:</em> &#x662F; NSObject &#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x7528;&#x4EE5;&#x786E;&#x5B9A;&#x67D0;&#x4E2A; NSObject &#x5BF9;&#x8C61;&#x662F;&#x5426;&#x662F;&#x67D0;&#x4E2A;&#x7C7B;&#x7684;&#x6210;&#x5458;&#x3002;&#x4E0E;&#x4E4B;&#x76F8;&#x4F3C;&#x7684;&#x4E3A; <em>-isKindOfClass:</em>&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x4EE5;&#x786E;&#x5B9A;&#x67D0;&#x4E2A;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x662F;&#x67D0;&#x4E2A;&#x7C7B;&#x6216;&#x5176;&#x5B50;&#x7C7B;&#x7684;&#x6210;&#x5458;&#x3002;<strong>&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;</strong>&#x4E3A;&#x5178;&#x578B;&#x7684;introspection&#x65B9;&#x6CD5;&#x3002;&#x5728;&#x786E;&#x5B9A;&#x5BF9;&#x8C61;&#x4E3A;&#x67D0;&#x7C7B;&#x6210;&#x5458;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;<strong>&#x5B89;&#x5168;</strong>&#x5730;&#x8FDB;&#x884C;&#x5F3A;&#x5236;&#x8F6C;&#x6362;&#xFF0C;&#x7EE7;&#x7EED;&#x4E4B;&#x540E;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</p>
+<h3 id="2-&#x52A8;&#x6001;&#x7ED1;&#x5B9A;"><a href="#2-&#x52A8;&#x6001;&#x7ED1;&#x5B9A;" class="headerlink" title="2. &#x52A8;&#x6001;&#x7ED1;&#x5B9A;"></a>2. &#x52A8;&#x6001;&#x7ED1;&#x5B9A;</h3><p>&#x57FA;&#x4E8E;&#x52A8;&#x6001;&#x7C7B;&#x578B;&#xFF0C;&#x5728;&#x67D0;&#x4E2A;&#x5B9E;&#x4F8B;&#x5BF9;&#x8C61;&#x88AB;&#x786E;&#x5B9A;&#x540E;&#xFF0C;&#x5176;&#x7C7B;&#x578B;&#x4FBF;&#x88AB;&#x786E;&#x5B9A;&#x4E86;&#x3002;&#x8BE5;&#x5BF9;&#x8C61;&#x5BF9;&#x5E94;&#x7684;&#x5C5E;&#x6027;&#x548C;&#x54CD;&#x5E94;&#x7684;&#x6D88;&#x606F;&#x4E5F;&#x88AB;&#x5B8C;&#x5168;&#x786E;&#x5B9A;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x52A8;&#x6001;&#x7ED1;&#x5B9A;&#x3002;</p>
+<h3 id="3-&#x52A8;&#x6001;&#x52A0;&#x8F7D;"><a href="#3-&#x52A8;&#x6001;&#x52A0;&#x8F7D;" class="headerlink" title="3. &#x52A8;&#x6001;&#x52A0;&#x8F7D;"></a>3. &#x52A8;&#x6001;&#x52A0;&#x8F7D;</h3><p>&#x6839;&#x636E;&#x9700;&#x6C42;&#x52A0;&#x8F7D;&#x6240;&#x9700;&#x8981;&#x7684;&#x8D44;&#x6E90;&#xFF0C;&#x8FD9;&#x70B9;&#x5F88;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#xFF0C;&#x5BF9;&#x4E8E;iOS&#x5F00;&#x53D1;&#x6765;&#x8BF4;&#xFF0C;&#x57FA;&#x672C;&#x5C31;&#x662F;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x673A;&#x578B;&#x505A;&#x9002;&#x914D;&#x3002;&#x6700;&#x7ECF;&#x5178;&#x7684;&#x4F8B;&#x5B50;&#x5C31;&#x662F;&#x5728;Retina&#x8BBE;&#x5907;&#x4E0A;&#x52A0;&#x8F7D;@2x&#x7684;&#x56FE;&#x7247;&#xFF0C;&#x800C;&#x5728;&#x8001;&#x4E00;&#x4E9B;&#x7684;&#x666E;&#x901A;&#x5C4F;&#x8BBE;&#x5907;&#x4E0A;&#x52A0;&#x8F7D;&#x539F;&#x56FE;&#x3002;</p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-06T04:57:15.000Z" itemprop="datePublished">2016-03-06</time>
+
+    </span>
+    <span class="post-description-item">
+        
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/03/07/当年纳闷-——-KVC-KVO/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    当年纳闷 —— KVC &amp; KVO
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/03/04/当年纳闷：block-是什么/" class="ui tiny button">
+                    
+                    当年纳闷：block 是什么
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#1-动态类型"><span>1. 动态类型</span></a></li><li><a href="#2-动态绑定"><span>2. 动态绑定</span></a></li><li><a href="#3-动态加载"><span>3. 动态加载</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

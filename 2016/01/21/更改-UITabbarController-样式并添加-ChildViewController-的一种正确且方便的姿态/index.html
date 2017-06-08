@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>更改 UITabbarController 样式并添加 ChildViewController 的一种正确且方便的姿态 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="123456789101112//  MyTabbarViewController.h//  TabbarViewController////  Created by LiuChanghong on 16/9/27.//  Copyright © 2016年 LCH. All rights reserved.//#import &amp;lt;UIKit/UIKit.h&amp;gt;@interface MyT">
+<meta name="keywords" content="iOS,UITabbarController">
+<meta property="og:type" content="article">
+<meta property="og:title" content="更改 UITabbarController 样式并添加 ChildViewController 的一种正确且方便的姿态">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/01/21/更改-UITabbarController-样式并添加-ChildViewController-的一种正确且方便的姿态/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="123456789101112//  MyTabbarViewController.h//  TabbarViewController////  Created by LiuChanghong on 16/9/27.//  Copyright © 2016年 LCH. All rights reserved.//#import &amp;lt;UIKit/UIKit.h&amp;gt;@interface MyT">
+<meta property="og:updated_time" content="2017-04-02T06:24:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="更改 UITabbarController 样式并添加 ChildViewController 的一种正确且方便的姿态">
+<meta name="twitter:description" content="123456789101112//  MyTabbarViewController.h//  TabbarViewController////  Created by LiuChanghong on 16/9/27.//  Copyright © 2016年 LCH. All rights reserved.//#import &amp;lt;UIKit/UIKit.h&amp;gt;@interface MyT">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-更改-UITabbarController-样式并添加-ChildViewController-的一种正确且方便的姿态" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    更改 UITabbarController 样式并添加 ChildViewController 的一种正确且方便的姿态
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//&#xA0; MyTabbarViewController.h</span></div><div class="line"><span class="comment">//&#xA0; TabbarViewController</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//&#xA0; Created by LiuChanghong on 16/9/27.</span></div><div class="line"><span class="comment">//&#xA0; Copyright &#xA9; 2016&#x5E74; LCH. All rights reserved.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyTabbarViewController</span> : <span class="title">UITabBarController</span></span></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//&#xA0; MyTabbarViewController.m</span></div><div class="line"><span class="comment">//&#xA0; TabbarViewController</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">//&#xA0; Created by LiuChanghong on 16/9/27.</span></div><div class="line"><span class="comment">//&#xA0; Copyright &#xA9; 2016&#x5E74; LCH. All rights reserved.</span></div><div class="line"><span class="comment">//</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;MyTabbarViewController.h&quot;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;FirstHomeViewController.h&quot;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;SecondHomeViewController.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MyTabbarViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MyTabbarViewController</span></span></div><div class="line"></div><div class="line">+(<span class="keyword">void</span>)initialize{</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x8BBE;&#x7F6E;&#x4E0D;&#x900F;&#x660E;</span></div><div class="line">&#xA0; &#xA0; [<span class="built_in">UITabBar</span> appearance].translucent = <span class="literal">NO</span>;</div><div class="line">&#xA0; &#xA0; <span class="comment">//tabbar&#x80CC;&#x666F;&#x8272;</span></div><div class="line">&#xA0; &#xA0; [[<span class="built_in">UITabBar</span> appearance] setBarTintColor:[<span class="built_in">UIColor</span> whiteColor]];</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x8BBE;&#x7F6E;tintColor&#xFF0C;&#x5B83;&#x7528;&#x6765;&#x8BF4;&#x660E;&#x5C4F;&#x5E55;&#x4E0A;&#x6709;&#x54EA;&#x4E9B;&#x63A7;&#x4EF6;&#x662F;&#x6D3B;&#x8DC3;&#x7684;&#xFF0C;&#x6216;&#x8005;&#x6709;&#x76F8;&#x5173;&#x6D3B;&#x52A8;&#x7684;&#x3002;&#x6B64;&#x5904;&#x4E5F;&#x5C31;&#x662F;tabBar&#x88AB;&#x9009;&#x4E2D;&#x7684;&#x56FE;&#x6807;&#x548C;&#x6587;&#x5B57;&#x989C;&#x8272;&#x3002;&#x9ED8;&#x8BA4;&#x4E3A;&#x84DD;&#x8272;&#x3002;</span></div><div class="line">&#xA0; &#xA0; [<span class="built_in">UITabBar</span> appearance].tintColor = [<span class="built_in">UIColor</span> blackColor];</div><div class="line">&#xA0;&#xA0; &#xA0;</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x8BBE;&#x7F6E;tabbar&#x7684;&#x5916;&#x89C2;</span></div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x9996;&#x5148;&#x62FF;&#x5230;&#x6574;&#x4E2A;tabbar&#x7684;&#x5916;&#x89C2;</span></div><div class="line">&#xA0; &#xA0; <span class="built_in">UITabBarItem</span> *item = [<span class="built_in">UITabBarItem</span> appearance];</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x8C03;&#x6574;&#x6587;&#x5B57;&#x7684;&#x4F4D;&#x7F6E;</span></div><div class="line"><span class="comment">//&#xA0; &#xA0; item.titlePositionAdjustment = UIOffsetMake(6, 2);//&#x8FD9;&#x4EE3;&#x8868;&#x5F80;&#x53F3;&#x79FB;&#x52A8;6&#xFF0C;&#x5F80;&#x4E0B;&#x79FB;&#x52A8;2</span></div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x8981;&#x8BBE;&#x7F6E;tabbar&#x7684;&#x5916;&#x89C2;&#xFF0C;&#x9700;&#x8981;&#x5C06;&#x6837;&#x5F0F;&#x5B58;&#x5165;&#x5B57;&#x5178;&#x4E2D;&#x3002;</span></div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x666E;&#x901A;&#x72B6;&#x6001;&#x7684;&#x5B57;&#x5178;</span></div><div class="line">&#xA0; &#xA0; <span class="built_in">NSMutableDictionary</span> *normalDict = [<span class="built_in">NSMutableDictionary</span> dictionary];</div><div class="line">&#xA0; &#xA0; normalDict[<span class="built_in">NSFontAttributeName</span>] = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">13</span>];</div><div class="line">&#xA0; &#xA0; normalDict[<span class="built_in">NSForegroundColorAttributeName</span>] = [<span class="built_in">UIColor</span> greenColor];</div><div class="line">&#xA0; &#xA0; [item setTitleTextAttributes:normalDict forState:<span class="built_in">UIControlStateNormal</span>];</div><div class="line">&#xA0;&#xA0; &#xA0;</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x9009;&#x4E2D;&#x72B6;&#x6001;&#x5B57;&#x7684;&#x5178;</span></div><div class="line">&#xA0; &#xA0; <span class="built_in">NSMutableDictionary</span> *selectDict = [<span class="built_in">NSMutableDictionary</span> dictionary];</div><div class="line">&#xA0; &#xA0; selectDict[<span class="built_in">NSFontAttributeName</span>] = [<span class="built_in">UIFont</span> systemFontOfSize:<span class="number">13</span>];</div><div class="line">&#xA0; &#xA0; selectDict[<span class="built_in">NSForegroundColorAttributeName</span>] = [<span class="built_in">UIColor</span> redColor];</div><div class="line">&#xA0; &#xA0; [item setTitleTextAttributes:selectDict forState:<span class="built_in">UIControlStateSelected</span>];</div><div class="line">&#xA0;&#xA0; &#xA0;</div><div class="line">}</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)addChildViewControllerWithClassName:(<span class="built_in">NSString</span> *)classname</div><div class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; andImageName:(<span class="built_in">NSString</span> *)imageName</div><div class="line">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; andTitle:(<span class="built_in">NSString</span> *)title{</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;VC&#xFF0C;&#x4EE5;&#x7C7B;&#x540D;&#x521D;&#x59CB;&#x5316;</span></div><div class="line">&#xA0; &#xA0; <span class="built_in">UIViewController</span> *vc = [[<span class="built_in">NSClassFromString</span>(classname) alloc]init];</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;navVc</span></div><div class="line">&#xA0; &#xA0; <span class="built_in">UINavigationController</span> *navVc = [[<span class="built_in">UINavigationController</span> alloc]initWithRootViewController:vc];</div><div class="line">&#xA0; &#xA0; <span class="comment">//vc&#x5728;navigationItem&#x4E0A;&#x7684;title</span></div><div class="line">&#xA0; &#xA0; vc.navigationItem.title = title;</div><div class="line">&#xA0; &#xA0; <span class="comment">//navVc&#x5728;tabbarItem&#x4E0A;&#x7684;title</span></div><div class="line">&#xA0; &#xA0; navVc.tabBarItem.title = title;</div><div class="line">&#xA0; &#xA0; <span class="comment">//navVc&#x5728;tabbarItem&#x4E0A;&#x7684;image</span></div><div class="line">&#xA0; &#xA0; navVc.tabBarItem.image = [<span class="built_in">UIImage</span> imageNamed:imageName];</div><div class="line">&#xA0; &#xA0; <span class="comment">//navVc&#x5728;tabbarItem&#x4E0A;&#x7684;selectedImage&#xFF0C;RendringMode&#x4E3A;&#x603B;&#x662F;Template&#x7684;&#xFF08;&#x5373;&#x603B;&#x662F;&#x4EE5;tintcolor&#x4E3A;&#x51C6;&#x7684;&#xFF09;</span></div><div class="line">&#xA0; &#xA0; navVc.tabBarItem.selectedImage = [[<span class="built_in">UIImage</span> imageNamed:[imageName stringByAppendingString:<span class="string">@&quot;_press&quot;</span>]] imageWithRenderingMode:<span class="built_in">UIImageRenderingModeAlwaysTemplate</span>];</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x6DFB;&#x52A0;navVc&#x5230;&#x672C;tabbar&#x4E0A;</span></div><div class="line">&#xA0; &#xA0; [<span class="keyword">self</span> addChildViewController:navVc];</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line">&#xA0; &#xA0; [<span class="keyword">super</span> viewDidLoad];</div><div class="line">&#xA0;&#xA0; &#xA0;</div><div class="line">&#xA0; &#xA0; <span class="comment">//&#x7ED9;tabBar&#x589E;&#x52A0;VC</span></div><div class="line">&#xA0; &#xA0; [<span class="keyword">self</span> addChildViewControllerWithClassName:[FirstHomeViewController description] andImageName:<span class="string">@&quot;home&quot;</span> andTitle:<span class="string">@&quot;&#x6211;&#x7684;&#x9996;&#x9875;&quot;</span>];<span class="comment">//+description&#x65B9;&#x6CD5;&#x9ED8;&#x8BA4;&#x8FD4;&#x56DE;&#x7C7B;&#x540D;&#xFF0C;-description&#x65B9;&#x6CD5;&#x9ED8;&#x8BA4;&#x8FD4;&#x56DE;&lt;&#x7C7B;&#x540D;:&#x5185;&#x5B58;&#x5730;&#x5740;&gt;</span></div><div class="line">&#xA0; &#xA0; [<span class="keyword">self</span> addChildViewControllerWithClassName:[SecondHomeViewController description] andImageName:<span class="string">@&quot;Found&quot;</span> andTitle:<span class="string">@&quot;&#x7B2C;&#x4E8C;&#x9875;&quot;</span>];</div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)didReceiveMemoryWarning {</div><div class="line">&#xA0; &#xA0; [<span class="keyword">super</span> didReceiveMemoryWarning];</div><div class="line">&#xA0; &#xA0; <span class="comment">// Dispose of any resources that can be recreated.</span></div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">/*</span></div><div class="line">#pragma mark - Navigation</div><div class="line"></div><div class="line">// In a storyboard-based application, you will often want to do a little preparation before navigation</div><div class="line">- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {</div><div class="line">&#xA0; &#xA0; // Get the new view controller using [segue destinationViewController].</div><div class="line">&#xA0; &#xA0; // Pass the selected object to the new view controller.</div><div class="line">}</div><div class="line">*/</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x53C2;&#x8003;&#xFF1A;<a href="https://github.com/Charlesyaoxin/NeiHanDuanZI" target="_blank" rel="external">https://github.com/Charlesyaoxin/NeiHanDuanZI</a></p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-01-21T02:40:08.000Z" itemprop="datePublished">2016-01-21</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/UITabbarController/">UITabbarController</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/02/04/类扩展和分类的区别/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    类扩展和分类的区别
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/01/20/测试一下音乐播放器/" class="ui tiny button">
+                    
+                    关于郑州的记忆
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>

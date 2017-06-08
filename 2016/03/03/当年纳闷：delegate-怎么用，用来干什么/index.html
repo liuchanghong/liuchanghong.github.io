@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<html lang="null">
+<head prefix="og: http://ogp.me/ns#">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="description" content="null">
+    <title>当年纳闷：delegate 怎么用，用来干什么 | 三个像素</title>
+
+    <!-- Open Graph -->
+    <meta name="description" content="使用步骤一个 delegate 的使用过程，大概需要以下几个步骤：  创建一个 delegate 委托者声明一个 delegate 委托者调用 delegate 里的方法 被委托者遵守 delegate，以便被委托者调用 被委托者实现 delegate 所定义的方法 实例化委托者和被委托者，并确定委托关系">
+<meta name="keywords" content="iOS,Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当年纳闷：delegate 怎么用，用来干什么">
+<meta property="og:url" content="https://liuchanghong.github.io/2016/03/03/当年纳闷：delegate-怎么用，用来干什么/index.html">
+<meta property="og:site_name" content="三个像素">
+<meta property="og:description" content="使用步骤一个 delegate 的使用过程，大概需要以下几个步骤：  创建一个 delegate 委托者声明一个 delegate 委托者调用 delegate 里的方法 被委托者遵守 delegate，以便被委托者调用 被委托者实现 delegate 所定义的方法 实例化委托者和被委托者，并确定委托关系">
+<meta property="og:updated_time" content="2017-04-02T08:33:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="当年纳闷：delegate 怎么用，用来干什么">
+<meta name="twitter:description" content="使用步骤一个 delegate 的使用过程，大概需要以下几个步骤：  创建一个 delegate 委托者声明一个 delegate 委托者调用 delegate 里的方法 被委托者遵守 delegate，以便被委托者调用 被委托者实现 delegate 所定义的方法 实例化委托者和被委托者，并确定委托关系">
+
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "email": "mailto:undefined",
+  "image": "undefined",
+  "name": "O(∩_∩)O",
+  "url": "https://liuchanghong.github.io"
+}
+</script>
+    <script>
+    var algoliaEnabled = false;
+    
+</script>
+
+    
+
+    
+    
+        <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    
+    
+    
+        <!-- stylesheets list from config.yml -->
+        
+        <link rel="stylesheet" href="/css/aloha.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.css">
+        
+        <link rel="stylesheet" href="//cdn.bootcss.com/magnific-popup.js/1.1.0/magnific-popup.min.css">
+        
+    
+
+</head>
+<body id="body" style="margin-bottom: 0;" class="pushable">
+
+    <div class="ui top fixed menu">
+        <a class="item" id="menu-icon"><i class="sidebar icon"></i></a>
+    </div>
+
+    <div id="menu-sidebar" class="ui left vertical sidebar menu">
+
+    <div id="sidebar-top">
+        <div class="content">
+            <h3>三个像素</h3>
+        </div>
+    </div>
+    <div class="ui container sidebar-card">
+    <div class="ui people shape content">
+        <div class="active side">
+            <div class="ui card">
+                <div class="image">
+                    <img class="ui medium bordered image" src="/images/avatar.jpg">
+                </div>
+                <div class="content">
+                    <a class="header">O(∩_∩)O</a>
+                    
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                        
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <div class="ui list">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+    
+    
+
+    
+
+    
+    <a href="/index.html" class="item" >
+        <i class="home icon"></i>
+        HOME
+    </a>
+
+    
+
+    
+</div>
+
+    <div class="pusher body-content">
+        <div id="content" class="ui main container">
+            <!--<div class="ui one column grid">-->
+                <!--<div class="column">-->
+                    <!--<div class="ui main container">-->
+                        <div id="post-当年纳闷：delegate-怎么用，用来干什么" class="ui main container article-type-post">
+
+    
+
+    <div class="ui divided grid">
+
+        <div class="two column row" id="article-content">
+
+            <div class="thirteen wide computer thirteen wide tablet sixteen wide mobile column">
+                
+
+<h1 class="ui header">
+    
+    当年纳闷：delegate 怎么用，用来干什么
+</h1>
+
+
+
+                <div class="article-inner">
+
+                    <div class="article-entry" itemprop="articleBody">
+                        
+                        <h3 id="&#x4F7F;&#x7528;&#x6B65;&#x9AA4;"><a href="#&#x4F7F;&#x7528;&#x6B65;&#x9AA4;" class="headerlink" title="&#x4F7F;&#x7528;&#x6B65;&#x9AA4;"></a>&#x4F7F;&#x7528;&#x6B65;&#x9AA4;</h3><p>&#x4E00;&#x4E2A; delegate &#x7684;&#x4F7F;&#x7528;&#x8FC7;&#x7A0B;&#xFF0C;&#x5927;&#x6982;&#x9700;&#x8981;&#x4EE5;&#x4E0B;&#x51E0;&#x4E2A;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol class="ui list">
+<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A; delegate</li>
+<li>&#x59D4;&#x6258;&#x8005;&#x58F0;&#x660E;&#x4E00;&#x4E2A; delegate</li>
+<li>&#x59D4;&#x6258;&#x8005;&#x8C03;&#x7528; delegate &#x91CC;&#x7684;&#x65B9;&#x6CD5;</li>
+<li>&#x88AB;&#x59D4;&#x6258;&#x8005;&#x9075;&#x5B88; delegate&#xFF0C;&#x4EE5;&#x4FBF;&#x88AB;<strong>&#x59D4;&#x6258;&#x8005;</strong>&#x8C03;&#x7528;</li>
+<li>&#x88AB;&#x59D4;&#x6258;&#x8005;&#x5B9E;&#x73B0; delegate &#x6240;&#x5B9A;&#x4E49;&#x7684;&#x65B9;&#x6CD5;</li>
+<li>&#x5B9E;&#x4F8B;&#x5316;&#x59D4;&#x6258;&#x8005;&#x548C;&#x88AB;&#x59D4;&#x6258;&#x8005;&#xFF0C;&#x5E76;&#x786E;&#x5B9A;&#x59D4;&#x6258;&#x5173;&#x7CFB;</li>
+</ol>
+<a id="more"></a>
+<p>&#x770B;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x4E00;&#x6B65;&#x4E00;&#x6B65;&#x6765;&#x5B9E;&#x73B0;&#xFF1A;</p>
+<ul class="ui list">
+<li>&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A; delegate</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">HomeworkDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)getHomework;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x53EF;&#x4EE5;&#x5355;&#x72EC;&#x65B0;&#x5EFA;&#x4E00;&#x4E2A; protocol &#x6587;&#x4EF6;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5199;&#x5728;&#x59D4;&#x6258;&#x8005;&#x7684; .h &#x6587;&#x4EF6;&#x4E2D;&#x3002;</p>
+<ul class="ui list">
+<li>&#x7B2C;&#x4E8C;&#x6B65;&#xFF1A;&#x59D4;&#x6258;&#x8005;&#x58F0;&#x660E;&#x4E00;&#x4E2A; delegate</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Teacher</span> : <span class="title">NSObject</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">weak</span>) <span class="keyword">id</span> &lt;HomeworkDelegate&gt; delegate;</div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)checkHomework;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul class="ui list">
+<li>&#x7B2C;&#x4E09;&#x6B65;&#xFF1A;&#x59D4;&#x6258;&#x8005;&#x8C03;&#x7528; delegate &#x91CC;&#x7684;&#x65B9;&#x6CD5;</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#import <span class="meta-string">&quot;Teacher.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Teacher</span></span></div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)checkHomework {</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (_delegate &amp;&amp; [_delegate respondsToSelector:<span class="keyword">@selector</span>(getHomework)]) {</div><div class="line">        </div><div class="line">        [_delegate getHomework];</div><div class="line">        </div><div class="line">    }</div><div class="line">    </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;&#x8001;&#x5E08;&#x4FEE;&#x6539;&#x4F5C;&#x4E1A;&quot;</span>);</div><div class="line">    </div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul class="ui list">
+<li>&#x7B2C;&#x56DB;&#x6B65;&#xFF1A;&#x88AB;&#x59D4;&#x6258;&#x8005;&#x9075;&#x5B88; delegate&#xFF0C;&#x4EE5;&#x4FBF;&#x88AB;&#x59D4;&#x6258;&#x8005;&#x8C03;&#x7528;</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">Student</span> : <span class="title">NSObject</span> &lt;<span class="title">HomeworkDelegate</span>&gt;</span></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)<span class="built_in">NSString</span> *name;</div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul class="ui list">
+<li>&#x7B2C;&#x4E94;&#x6B65;&#xFF1A;&#x88AB;&#x59D4;&#x6258;&#x8005;&#x5B9E;&#x73B0; delegate &#x6240;&#x5B9A;&#x4E49;&#x7684;&#x65B9;&#x6CD5;</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">Student</span></span></div><div class="line"></div><div class="line">-(<span class="keyword">void</span>)getHomework {</div><div class="line">    </div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@&quot;%@&#x6536;&#x4F5C;&#x4E1A;&quot;</span>,<span class="keyword">self</span>.name);</div><div class="line">    </div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<ul class="ui list">
+<li>&#x7B2C;&#x516D;&#x6B65;&#xFF1A;&#x5B9E;&#x4F8B;&#x5316;&#x59D4;&#x6258;&#x8005;&#x548C;&#x88AB;&#x59D4;&#x6258;&#x8005;&#xFF0C;&#x5E76;&#x786E;&#x5B9A;&#x59D4;&#x6258;&#x5173;&#x7CFB;</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line"></div><div class="line">    Teacher *teacher = [Teacher new];</div><div class="line">    </div><div class="line">    Student *stu = [Student new];</div><div class="line">    </div><div class="line">    stu.name = <span class="string">@&quot;&#x5C0F;&#x660E;&quot;</span>;</div><div class="line">    </div><div class="line">    teacher.delegate = stu; <span class="comment">// &#x786E;&#x5B9A;&#x59D4;&#x6258;&#x5173;&#x7CFB;</span></div><div class="line">    </div><div class="line">    [teacher checkHomework];</div><div class="line">    </div><div class="line">}</div></pre></td></tr></table></figure>
+<p>&#x5F53;&#x7136;&#xFF0C;&#x4EE5;&#x4E0A;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x6700;&#x57FA;&#x672C;&#x7684; delegate &#x4F7F;&#x7528;&#x6D41;&#x7A0B;&#xFF0C;&#x4E0D;&#x540C;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x8FD8;&#x6709;&#x5176;&#x4ED6;&#x4E0D;&#x540C;&#x5199;&#x6CD5;&#x3002;</p>
+<h3 id="&#x4F7F;&#x7528;&#x573A;&#x666F;"><a href="#&#x4F7F;&#x7528;&#x573A;&#x666F;" class="headerlink" title="&#x4F7F;&#x7528;&#x573A;&#x666F;"></a>&#x4F7F;&#x7528;&#x573A;&#x666F;</h3><p>&#x521D;&#x5B66;&#x7684;&#x65F6;&#x5019;&#xFF0C;delegate &#x4F7F;&#x7528;&#x6700;&#x591A;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x5C31;&#x662F;&#x9875;&#x9762;&#x4F20;&#x503C;&#x4E86;&#x3002;</p>
+<p>&#x6BD4;&#x5982; SecondViewController &#x4E2D;&#x6709;&#x4E00;&#x4E2A; textField &#xFF0C;&#x9700;&#x8981;&#x5C06;&#x5B83;&#x91CC;&#x9762;&#x7684;&#x503C;&#x4F20;&#x5230; ViewController &#x7684;&#x4E00;&#x4E2A; label &#x4E0A;&#x3002;</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  PassValueDelegate.h</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">PassValueDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)passValue: (<span class="built_in">NSString</span> *)value;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  SecondViewController.h</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;PassValueDelegate.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SecondViewController</span> : <span class="title">UIViewController</span></span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>,<span class="keyword">weak</span>) <span class="keyword">id</span> &lt;PassValueDelegate&gt; delegate;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  SecondViewController.m</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;SecondViewController.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SecondViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UITextField</span> *textField;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">SecondViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line">    </div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    </div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// &#x786E;&#x5B9A;&#x6309;&#x94AE;&#xFF0C;&#x70B9;&#x51FB;&#x540E;&#x6267;&#x884C; _delegate &#x91CC;&#x7684;&#x4F20;&#x503C;&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE; ViewController</span></div><div class="line">- (<span class="keyword">IBAction</span>)buttonAction:(<span class="keyword">id</span>)sender {</div><div class="line">    </div><div class="line">    <span class="keyword">if</span> (_delegate &amp;&amp;[_delegate respondsToSelector:<span class="keyword">@selector</span>(passValue:)]) {</div><div class="line">        </div><div class="line">        [<span class="keyword">self</span>.delegate passValue:<span class="keyword">self</span>.textField.text];</div><div class="line">    </div><div class="line">    }</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span>.navigationController popViewControllerAnimated:<span class="literal">YES</span>];</div><div class="line"></div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  ViewController.h</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;PassValueDelegate.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> : <span class="title">UIViewController</span> &lt;<span class="title">PassValueDelegate</span>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//  ViewController.m</span></div><div class="line"></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;ViewController.h&quot;</span></span></div><div class="line"><span class="meta">#import <span class="meta-string">&quot;SecondViewController.h&quot;</span></span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">ViewController</span> ()</span></div><div class="line"></div><div class="line"><span class="keyword">@property</span> (<span class="keyword">weak</span>, <span class="keyword">nonatomic</span>) <span class="keyword">IBOutlet</span> <span class="built_in">UILabel</span> *label;</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">ViewController</span></span></div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)viewDidLoad {</div><div class="line">    </div><div class="line">    [<span class="keyword">super</span> viewDidLoad];</div><div class="line">    </div><div class="line">}</div><div class="line"></div><div class="line">- (<span class="keyword">IBAction</span>)nextButtonAction:(<span class="keyword">id</span>)sender {</div><div class="line">    </div><div class="line">    <span class="built_in">UIStoryboard</span> *mainStoryboard = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@&quot;Main&quot;</span> bundle:[<span class="built_in">NSBundle</span> mainBundle]];</div><div class="line">    </div><div class="line">    SecondViewController *secondVC = [mainStoryboard instantiateViewControllerWithIdentifier:<span class="string">@&quot;SecondViewController&quot;</span>];</div><div class="line">    </div><div class="line">    secondVC.delegate = <span class="keyword">self</span>;</div><div class="line">    </div><div class="line">    [<span class="keyword">self</span>.navigationController pushViewController:secondVC animated:<span class="literal">YES</span>];</div><div class="line">    </div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">//  delegate &#x5B9E;&#x73B0;</span></div><div class="line">-(<span class="keyword">void</span>)passValue:(<span class="built_in">NSString</span> *)value {</div><div class="line">    <span class="keyword">self</span>.label.text = value;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">@end</span></div></pre></td></tr></table></figure>
+<p>&#x6211;&#x5F53;&#x65F6;&#x4E0D;&#x592A;&#x61C2; delegate&#x600E;&#x4E48;&#x7528;&#xFF0C;&#x5C31;&#x7528;&#x529B;&#x544A;&#x8BC9;&#x81EA;&#x5DF1;&#x8FD9;&#x4E9B;&#xFF1A;</p>
+<ul class="ui list">
+<li><p>A &#x9075;&#x5B88;&#x4E86; protocol &#xFF0C;A &#x5C31;&#x8981;&#x5E2E;&#x7740; protocol &#x7684;&#x62E5;&#x6709;&#x8005; B &#x529E;&#x4E8B;&#x60C5;&#xFF0C;&#x8981;&#x529E;&#x7684;&#x5C31;&#x662F; protocol &#x91CC;&#x58F0;&#x660E;&#x7684;&#x65B9;&#x6CD5;&#x3002;</p>
+</li>
+<li><p>B &#x5B9E;&#x4F8B;&#x5316;&#x4E86; protocol &#xFF08;&#x8FD9;&#x6837;&#x5199;&#xFF1A; @property (nonatomic,weak) id <protoco> delegate &#xFF09; &#xFF0C;B &#x8981;&#x628A; delegate &#x59D4;&#x6258;&#x7ED9; A &#xFF0C;A &#x5C31;&#x4F1A;&#x5E2E;&#x7740; B &#x53BB;&#x5B9E;&#x73B0; protocol &#x91CC;&#x7684;&#x65B9;&#x6CD5;&#x3002;</protoco></p>
+</li>
+</ul>
+<p>&#x7528;&#x591A;&#x4E86;&#x5C31;&#x61C2;&#x4E86;&#xFF0C;&#x5B9E;&#x5728;&#x4E0D;&#x61C2;&#xFF0C;&#x5C31;&#x63A5;&#x7740;&#x518D;&#x7528;&#x3002;</p>
+<p>&#x1F642;</p>
+
+                        
+                    </div>
+
+                    
+                    
+                    
+
+                    <div class="description post-description">
+    <span class="post-description-item">
+        <time datetime="2016-03-03T14:02:48.000Z" itemprop="datePublished">2016-03-03</time>
+
+    </span>
+    <span class="post-description-item">
+        
+
+    <span>
+        <i class="tags icon"></i>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/iOS/">iOS</a>
+    </span>
+
+    
+    <span class="ui tiny label">
+        <a href="/tags/Objective-C/">Objective-C</a>
+    </span>
+
+    
+
+    </span>
+</div>
+
+                </div>
+                
+                <div id="pagination" class="nav-web ui text container pagination">
+
+    <div class="ui stackable two column divided grid container">
+        <div class="row">
+            <div class="column nav-left">
+                
+
+                <a href="/2016/03/04/当年纳闷-——-MVC-设计模式/" class="ui tiny button">
+
+                    <i class="angle left icon"></i>
+                    
+                    当年纳闷 —— MVC 设计模式
+                    
+
+                </a>
+
+                
+            </div>
+            <div class="column nav-right">
+                
+
+                <a href="/2016/03/02/当年纳闷：protocol-到底是什么东西/" class="ui tiny button">
+                    
+                    当年纳闷：protocol 到底是什么东西
+                    
+                    <i class="angle right icon"></i></a>
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+                
+            </div>
+
+            
+            <div class="three wide computer three wide tablet column">
+
+                <div class="ui sticky article-toc" id="article-toc">
+                    <!-- toc -->
+                    <ol class="ui ordered list"><li><a href="#使用步骤"><span>使用步骤</span></a></li><li><a href="#使用场景"><span>使用场景</span></a></li></ol>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+</div>
+
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <div class="ui inverted section divider"></div>
+        &copy; 2017 <a href="/">O(∩_∩)O</a>,
+        Powered by <a href="https://github.com/henryhuang/hexo-theme-aloha" target="_blank">Aloha</a> and <a
+                href="http://hexo.io/" target="_blank">Hexo</a>.
+    </div>
+</div>
+
+    </div>
+
+
+
+
+<!-- scripts list from theme config.yml -->
+
+<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+
+<script src="//cdn.bootcss.com/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch/3.18.1/algoliasearch.min.js"></script>
+
+<script src="//cdn.bootcss.com/algoliasearch-helper-js/2.13.0/algoliasearch.helper.min.js"></script>
+
+<script src="/js/semantic-ui-algolia.js"></script>
+
+<script src="/js/aloha-events.js"></script>
+
+
+
+</body>
+</html>
